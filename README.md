@@ -47,10 +47,10 @@ git remote add origin https://github.com/oursky/new-project
 git push -u origin master
 ```
 
-#### What's Next
+### What's Next
 - Setup [Crashlytics](https://fabric.io/kits/android/crashlytics) or [Sentry](https://sentry.io/welcome/)
 - Setup [Buddybuild](https://www.buddybuild.com/)
 - Setup [HockeyApp](https://www.hockeyapp.net/)
 
-## License
+### License
 Distributed under the MIT license. See ``LICENSE`` for more information.
