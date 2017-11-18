@@ -3,7 +3,7 @@
 
 ![android](https://img.shields.io/badge/android-java-brightgreen.svg)
 
-### The project uses:
+### android-java project uses:
 - Redux with [Reductor](https://github.com/Yarikx/reductor), [RxAndroid](https://github.com/ReactiveX/RxAndroid),  [RxJava](https://github.com/ReactiveX/RxJava)
 - Navigation with [Conductor](https://github.com/bluelinelabs/Conductor)
 - Custom font with [Calligraphy](https://github.com/chrisjenx/Calligraphy)
@@ -11,7 +11,7 @@
 - [Flexbox](https://github.com/google/flexbox-layout)
  
 ### Project Setup
-1. Clone skeleton repo into an **temperory** directory
+1. Clone skeleton repo into a **temperory** directory
 ```
 git clone --depth 1 https://github.com/oursky/skeleton skeleton
 ```
@@ -32,6 +32,7 @@ cp -R skeleton/android-java new-project/
 ```
 4. Adjust code
    - App Name
+   - Manifest(Android) or Info.plist(iOS)
    - Build Configuration (gradle, or xcode project)
    - Rename package (`com.oursky.skeleton` to something else).  [How-To](https://stackoverflow.com/questions/16804093/android-studio-rename-package)
 5. Add the modules and review changes
