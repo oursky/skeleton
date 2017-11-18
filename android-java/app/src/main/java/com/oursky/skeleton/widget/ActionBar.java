@@ -17,6 +17,7 @@ import com.oursky.skeleton.helper.LP;
 import static com.oursky.skeleton.helper.ResourceHelper.dimen;
 import static com.oursky.skeleton.helper.ResourceHelper.dp;
 import static com.oursky.skeleton.helper.ResourceHelper.font;
+import static com.oursky.skeleton.helper.ResourceHelper.color;
 
 public class ActionBar extends LinearLayout {
     private LinearLayout mLeft, mRight;
@@ -71,8 +72,8 @@ public class ActionBar extends LinearLayout {
         if (mTitle != null) return;
         mTitle = new TextView(getContext());
         mTitle.setGravity(Gravity.CENTER_HORIZONTAL);
-        mTitle.setTypeface(font(Font.BARLOW_Medium));
-        mTitle.setTextColor(0xff101010);
+        mTitle.setTypeface(font(Font.BARLOW_MEDIUM));
+        mTitle.setTextColor(color(R.color.actionbar_title));
         mTitle.setTextSize(20);
         mCenter.addView(mTitle, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER)
                                   .build());
