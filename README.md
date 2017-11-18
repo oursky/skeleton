@@ -20,11 +20,11 @@ git clone --depth 1 https://github.com/oursky/skeleton skeleton
 mkdir new-project
 cd new-project
 git init
-vi .gitignore
+cp ../skeleton/.gitignore .
 vi LICENSE
 vi README.md
 git add .gitignore LICENSE README.md
-git commit -am "Initial repo"
+git commit -am "init repo"
 ```
 3. copy modules into new project, e.g. `android-java`
 ```
