@@ -83,5 +83,5 @@ dependencies {
     // Better ImageView: https://github.com/facebook/fresco
     implementation 'com.facebook.fresco:fresco:1.5.0'
     // Flexbox: https://github.com/google/flexbox-layout
-    compile 'com.google.android:flexbox:0.3.0'
+    implementation 'com.google.android:flexbox:0.3.0'
 }
