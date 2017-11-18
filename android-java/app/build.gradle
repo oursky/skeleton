@@ -1,0 +1,87 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+    // Enable JAVA8 and lambda
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    defaultConfig {
+        applicationId "com.oursky.skeleton"
+        minSdkVersion 16
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro',
+                    'proguard-fresco.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro',
+                    'proguard-fresco.pro'
+        }
+    }
+    // Product Favors: staging & prod
+    flavorDimensions "default"
+    productFlavors {
+        staging {
+            applicationId "com.oursky.skeleton.staging"
+            dimension "default"
+        }
+        prod {
+            // For production we use an id for the customer company
+            applicationId "com.company.skeleton"
+            dimension "default"
+        }
+    }
+    lintOptions {
+        abortOnError true
+        xmlReport false
+        htmlReport true
+        lintConfig file("lint.xml")
+        htmlOutput file("lint/lint-result.html")
+        xmlOutput file("lint/lint-result.xml")
+    }
+    testOptions {
+        unitTests {
+            returnDefaultValues = true
+        }
+    }
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // Google
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:support-core-utils:26.1.0'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:cardview-v7:26.1.0'
+    implementation 'com.android.support:recyclerview-v7:26.1.0'
+    // RxAndroid: https://github.com/ReactiveX/RxAndroid
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    // RxJava: https://github.com/ReactiveX/RxJava
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.3'
+    // Redux: https://github.com/Yarikx/reductor
+    implementation 'com.yheriatovych:reductor:0.13.1'
+    annotationProcessor 'com.yheriatovych:reductor-processor:0.13.1'
+    // Conductor: https://github.com/bluelinelabs/Conductor
+    implementation 'com.bluelinelabs:conductor:2.1.4'
+    // Custom font support in XML: https://github.com/chrisjenx/Calligraphy/
+    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+    // Better ImageView: https://github.com/facebook/fresco
+    implementation 'com.facebook.fresco:fresco:1.5.0'
+    // Flexbox: https://github.com/google/flexbox-layout
+    compile 'com.google.android:flexbox:0.3.0'
+}
