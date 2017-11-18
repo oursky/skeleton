@@ -1,16 +1,55 @@
 # Mobile App Project Skeleton
-> Generic mobile app skeleton
+> Mobile app project skeleton
 
 ![android](https://img.shields.io/badge/android-java-brightgreen.svg)
-![ios](https://img.shields.io/badge/ios-swift-brightgreen.svg)
 
-## Project Setup
+### The project uses:
+- Redux with [Reductor](https://github.com/Yarikx/reductor), [RxAndroid](https://github.com/ReactiveX/RxAndroid),  [RxJava](https://github.com/ReactiveX/RxJava)
+- Navigation with [Conductor](https://github.com/bluelinelabs/Conductor)
+- Custom font with [Calligraphy](https://github.com/chrisjenx/Calligraphy)
+- [Fresco](https://github.com/facebook/fresco)
+- [Flexbox](https://github.com/google/flexbox-layout)
+ 
+### Project Setup
+1. Clone skeleton repo into an **temperory** directory
+```
+git clone --depth 1 https://github.com/oursky/skeleton skeleton
+```
+2. Init your repo
+```
+mkdir new-project
+cd new-project
+git init
+vi .gitignore
+vi LICENSE
+vi README.md
+git add .gitignore LICENSE README.md
+git commit -am "Initial repo"
+```
+3. copy modules into new project, e.g. `android-java`
+```
+cp -R skeleton/android-java new-project/
+```
+4. Adjust code
+   - App Name
+   - Build Configuration (gradle, or xcode project)
+   - Rename package (`com.oursky.skeleton` to something else).  [How-To](https://stackoverflow.com/questions/16804093/android-studio-rename-package)
+5. Add the modules and review changes
+```
+git add android-java
+git status
+git commit -am "pull in skeleton"
+```
+6. Push your new project 
+```
+git remote add origin https://github.com/oursky/new-project
+git push -u origin master
+```
 
-#### Android
-Write something here.
-
-#### iOS
-Write something here.
+#### What's Next
+- Setup [Crashlytics](https://fabric.io/kits/android/crashlytics) or [Sentry](https://sentry.io/welcome/)
+- Setup [Buddybuild](https://www.buddybuild.com/)
+- Setup [HockeyApp](https://www.hockeyapp.net/)
 
 ## License
 Distributed under the MIT license. See ``LICENSE`` for more information.
