@@ -13,7 +13,7 @@
 ### Project Setup
 1. Clone skeleton repo into a **temperory** directory
 ```
-git clone --depth 1 https://github.com/oursky/skeleton skeleton
+git clone https://github.com/oursky/skeleton skeleton
 ```
 2. Init your repo
 ```
