@@ -43,8 +43,8 @@ git commit -am "pull in skeleton"
 ```
 6. Push your new project 
 ```
-git remote add origin https://github.com/oursky/new-project
-git push -u origin master
+git remote add oursky https://github.com/oursky/new-project
+git push -u oursky master
 ```
 
 ### What's Next
