@@ -2,6 +2,7 @@
 > Mobile app project skeleton
 
 ![android](https://img.shields.io/badge/android-java-brightgreen.svg)
+![android](https://img.shields.io/badge/android-kotlin-brightgreen.svg)
 
 ### android-java project uses:
 - Redux with [Reductor](https://github.com/Yarikx/reductor), [RxAndroid](https://github.com/ReactiveX/RxAndroid),  [RxJava](https://github.com/ReactiveX/RxJava)
