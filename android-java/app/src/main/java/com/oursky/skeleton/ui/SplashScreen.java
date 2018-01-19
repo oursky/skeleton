@@ -8,7 +8,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.oursky.skeleton.R;
-import com.oursky.skeleton.design.Font;
 import com.oursky.skeleton.helper.LP;
 import com.oursky.skeleton.ui.base.AppController;
 
@@ -19,7 +18,7 @@ public class SplashScreen extends AppController {
     protected @NonNull View onCreateView(Context context) {
         FrameLayout layout = new FrameLayout(context);
         TextView tv = new TextView(context);
-        tv.setTypeface(font(Font.BARLOW_THIN));
+        tv.setTypeface(font(R.font.barlow_condensed_thin));
         tv.setTextSize(32);
         tv.setText(R.string.splash_title);
         layout.addView(tv, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER).build());

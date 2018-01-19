@@ -12,7 +12,6 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
 import com.oursky.skeleton.R;
-import com.oursky.skeleton.design.Font;
 import com.oursky.skeleton.helper.LP;
 import com.oursky.skeleton.redux.AppState;
 import com.oursky.skeleton.ui.base.AppController;
@@ -45,7 +44,7 @@ public class SecondScreen extends AppController {
         popup.setTextPadding(dp(32), dp(12), dp(32), dp(12));
         popup.setBackgroundColor(color(R.color.main_next_bg));
         popup.setTextColor(color(R.color.main_next_text));
-        popup.setTypeface(font(Font.BARLOW_BOLD));
+        popup.setTypeface(font(R.font.barlow_condensed_bold));
         popup.setTextSize(24);
         popup.setText(R.string.main_popup);
         layout.addView(popup, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT)

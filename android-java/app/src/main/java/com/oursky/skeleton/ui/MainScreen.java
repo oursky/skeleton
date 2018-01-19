@@ -13,7 +13,6 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
 import com.oursky.skeleton.R;
-import com.oursky.skeleton.design.Font;
 import com.oursky.skeleton.helper.LP;
 import com.oursky.skeleton.redux.AppState;
 import com.oursky.skeleton.ui.base.AppController;
@@ -35,14 +34,14 @@ public class MainScreen extends AppController {
         FrameLayout layout = new FrameLayout(context);
         mTitle = new TextView(context);
         mTitle.setTextSize(32);
-        mTitle.setTypeface(font(Font.BARLOW_BOLD));
+        mTitle.setTypeface(font(R.font.barlow_condensed_bold));
         layout.addView(mTitle, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER).build());
 
         Button next = new Button(context);
         next.setTextPadding(dp(32), dp(12), dp(32), dp(12));
         next.setBackgroundColor(color(R.color.main_next_bg));
         next.setTextColor(color(R.color.main_next_text));
-        next.setTypeface(font(Font.BARLOW_BOLD));
+        next.setTypeface(font(R.font.barlow_condensed_bold));
         next.setTextSize(24);
         next.setText(R.string.main_next);
         layout.addView(next, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER|Gravity.BOTTOM)

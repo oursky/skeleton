@@ -1,6 +1,5 @@
 package com.oursky.skeleton;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -9,10 +8,7 @@ import com.bluelinelabs.conductor.Conductor;
 import com.bluelinelabs.conductor.Router;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.facebook.drawee.backends.pipeline.Fresco;
-import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 
-import com.oursky.skeleton.design.Font;
 import com.oursky.skeleton.redux.ViewAction;
 import com.oursky.skeleton.ui.MainScreen;
 import com.oursky.skeleton.ui.SplashScreen;
@@ -29,11 +25,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath(Font.BARLOW_THIN)
-                .setFontAttrId(R.attr.fontPath)
-                .build()
-        );
         Fresco.initialize(this);
         if (!mStoreRetained) {
             mStoreRetained = true;
@@ -75,10 +66,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    }
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
     //---------------------------------------------------------------
     //endregion
