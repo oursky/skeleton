@@ -6,7 +6,6 @@
 ### android-java project uses:
 - Redux with [Reductor](https://github.com/Yarikx/reductor), [RxAndroid](https://github.com/ReactiveX/RxAndroid),  [RxJava](https://github.com/ReactiveX/RxJava)
 - Navigation with [Conductor](https://github.com/bluelinelabs/Conductor)
-- Custom font with [Calligraphy](https://github.com/chrisjenx/Calligraphy)
 - [Fresco](https://github.com/facebook/fresco)
 - [Flexbox](https://github.com/google/flexbox-layout)
  

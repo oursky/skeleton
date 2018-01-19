@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.oursky.skeleton.R;
-import com.oursky.skeleton.design.Font;
 import com.oursky.skeleton.helper.LP;
 import com.oursky.skeleton.helper.Logger;
 import com.oursky.skeleton.ui.base.AppBottomPopup;
@@ -45,7 +44,7 @@ public class DummyPopup extends AppBottomPopup {
 
         Checkbox checkbox = new Checkbox(context);
         checkbox.setText(R.string.dummy_check);
-        checkbox.setTypeface(font(Font.BARLOW_REGULAR));
+        checkbox.setTypeface(font(R.font.barlow_condensed_regular));
         checkbox.setTextSize(20);
         checkbox.setButtonDrawable(R.drawable.ic_checkbox, dp(28), dp(28));
         layout.addView(checkbox, LP.linear(LP.WRAP_CONTENT, LP.WRAP_CONTENT)
@@ -56,7 +55,7 @@ public class DummyPopup extends AppBottomPopup {
         close.setTextPadding(dp(16), dp(8), dp(16), dp(8));
         close.setBackgroundColor(color(R.color.main_next_bg));
         close.setTextColor(color(R.color.main_next_text));
-        close.setTypeface(font(Font.BARLOW_BOLD));
+        close.setTypeface(font(R.font.barlow_condensed_bold));
         close.setTextSize(24);
         close.setText(R.string.dummy_close);
         layout.addView(close, LP.linear(LP.WRAP_CONTENT, LP.WRAP_CONTENT)

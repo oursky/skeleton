@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.oursky.skeleton.R;
-import com.oursky.skeleton.design.Font;
 import com.oursky.skeleton.helper.LP;
 
 import static com.oursky.skeleton.helper.ResourceHelper.dimen;
@@ -72,7 +71,7 @@ public class ActionBar extends LinearLayout {
         if (mTitle != null) return;
         mTitle = new TextView(getContext());
         mTitle.setGravity(Gravity.CENTER_HORIZONTAL);
-        mTitle.setTypeface(font(Font.BARLOW_MEDIUM));
+        mTitle.setTypeface(font(R.font.barlow_condensed_medium));
         mTitle.setTextColor(color(R.color.actionbar_title));
         mTitle.setTextSize(20);
         mCenter.addView(mTitle, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER)

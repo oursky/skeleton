@@ -4,11 +4,12 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.support.annotation.ColorRes;
 import android.support.annotation.DimenRes;
+import android.support.annotation.FontRes;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.content.res.ResourcesCompat;
+import android.util.SparseArray;
 import android.util.TypedValue;
 import java.lang.ref.WeakReference;
-
-import uk.co.chrisjenx.calligraphy.TypefaceUtils;
 
 public class ResourceHelper {
     private static WeakReference<Context> sContext;
@@ -31,9 +32,17 @@ public class ResourceHelper {
         if (context == null) return 0;
         return ContextCompat.getColor(context, res);
     }
-    public static Typeface font(String font) {
+
+    //region Font support
+    private static SparseArray<Typeface> sFontCache = new SparseArray<>();
+    public static Typeface font(@FontRes int font) {
+        Typeface cache = sFontCache.get(font);
+        if (cache != null) return cache;
         Context context = sContext.get();
         if (context == null) return null;
-        return TypefaceUtils.load(context.getAssets(), "fonts/" + font);
+        cache = ResourcesCompat.getFont(context, font);
+        sFontCache.put(font, cache);
+        return cache;
     }
+    //endregion
 }

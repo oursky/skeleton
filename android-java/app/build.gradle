@@ -78,10 +78,8 @@ dependencies {
     annotationProcessor 'com.yheriatovych:reductor-processor:0.13.1'
     // Conductor: https://github.com/bluelinelabs/Conductor
     implementation 'com.bluelinelabs:conductor:2.1.4'
-    // Custom font support: https://github.com/chrisjenx/Calligraphy/
-    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
     // Better ImageView: https://github.com/facebook/fresco
-    implementation 'com.facebook.fresco:fresco:1.5.0'
+    implementation 'com.facebook.fresco:fresco:1.7.1'
     // Flexbox: https://github.com/google/flexbox-layout
     implementation 'com.google.android:flexbox:0.3.0'
 }
