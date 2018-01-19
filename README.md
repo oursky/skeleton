@@ -9,6 +9,12 @@
 - [Fresco](https://github.com/facebook/fresco)
 - [Flexbox](https://github.com/google/flexbox-layout)
  
+### android-kotlin project uses:
+- Redux with [redux-kotlin](https://github.com/pardom/redux-kotlin), [RxAndroid](https://github.com/ReactiveX/RxAndroid),  [RxJava](https://github.com/ReactiveX/RxJava)
+- Navigation with [Conductor](https://github.com/bluelinelabs/Conductor)
+- [Fresco](https://github.com/facebook/fresco)
+- [Flexbox](https://github.com/google/flexbox-layout)
+ 
 ### Project Setup
 1. Clone skeleton repo into a **temperory** directory
 ```
