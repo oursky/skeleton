@@ -36,13 +36,15 @@ public class ResourceHelper {
     //region Font support
     private static SparseArray<Typeface> sFontCache = new SparseArray<>();
     public static Typeface font(@FontRes int font) {
-        Typeface cache = sFontCache.get(font);
-        if (cache != null) return cache;
-        Context context = sContext.get();
-        if (context == null) return null;
-        cache = ResourcesCompat.getFont(context, font);
-        sFontCache.put(font, cache);
-        return cache;
+        if (sFontCache.indexOfKey(font) >= 0) {
+            return sFontCache.get(font);
+        } else {
+            Context context = sContext.get();
+            if (context == null) return null;
+            Typeface cache = ResourcesCompat.getFont(context, font);
+            sFontCache.put(font, cache);
+            return cache;
+        }
     }
     //endregion
 }
