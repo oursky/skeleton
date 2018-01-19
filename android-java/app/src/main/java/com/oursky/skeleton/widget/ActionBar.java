@@ -67,7 +67,7 @@ public class ActionBar extends LinearLayout {
 
     //region Title
     //---------------------------------------------------------------
-    public void raiiTitle() {
+    private void raiiTitle() {
         if (mTitle != null) return;
         mTitle = new TextView(getContext());
         mTitle.setGravity(Gravity.CENTER_HORIZONTAL);

@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">skeleton</string>
+    <string name="splash_title">Loading</string>
+    <string name="main_next">next</string>
+    <string name="main_popup">popup</string>
+    <string name="dummy_close">close</string>
+    <string name="dummy_check">Checkbox Test</string>
+</resources>
