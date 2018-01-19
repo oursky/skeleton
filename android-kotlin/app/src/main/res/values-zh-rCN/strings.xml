@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">骨架</string>
+    <string name="splash_title">载入中</string>
+    <string name="main_next">下一步</string>
+    <string name="main_popup">弹出</string>
+    <string name="dummy_close">关闭</string>
+    <string name="dummy_check">选框测试</string>
+</resources>
