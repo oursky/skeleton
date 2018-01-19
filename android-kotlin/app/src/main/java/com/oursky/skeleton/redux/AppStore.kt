@@ -10,8 +10,10 @@ class AppStore {
     var view = ViewStore.createStore()
 
     fun dispatch(action: Any) {
-        client.dispatch(action)
-        view.dispatch(action)
+        when (action) {
+            is ClientStore.Action -> client.dispatch(action)
+            is ViewStore.Action -> view.dispatch(action)
+        }
     }
     fun<S> observe(store: Store<S>): Observable<S> {
         return Observable.create<S>(object : ObservableOnSubscribe<S> {
