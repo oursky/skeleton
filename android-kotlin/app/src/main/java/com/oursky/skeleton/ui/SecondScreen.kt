@@ -58,13 +58,12 @@ class SecondScreen : BaseController() {
 
         // Register event listener
         popup.setOnClickListener(onPopupClick)
-        mPopup!!.onClose = onPopupClose
-
+        mPopup?.onClose = onPopupClose
         return frame
     }
     override fun onAttach(view: View) {
         super.onAttach(view)
-        mSubscriptions.add(store!!.observe(store!!.view)
+        mSubscriptions.add(store().observe(store().view)
                                   .distinctUntilChanged()
                                   .observeOn(AndroidSchedulers.mainThread())
                                   .map(mapTitle)

@@ -27,7 +27,6 @@ class AppStore {
         }
     }
     fun<S> observe(store: Store<S>): Observable<S> {
-        // TODO: Explore RxKotlin way to do this?
         return Observable.create(object : ObservableOnSubscribe<S> {
             private var mSubscribe: Store.Subscription? = null
             @Throws(Exception::class)

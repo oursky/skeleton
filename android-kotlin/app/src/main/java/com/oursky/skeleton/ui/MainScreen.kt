@@ -31,8 +31,8 @@ class MainScreen : BaseController() {
     override fun onCreateView(context: Context): View {
         val layout = FrameLayout(context)
         mTitle = TextView(context)
-        mTitle!!.textSize = 32f
-        mTitle!!.typeface = font(R.font.barlow_condensed_bold)
+        mTitle?.textSize = 32f
+        mTitle?.typeface = font(R.font.barlow_condensed_bold)
         layout.addView(mTitle, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER).build())
 
         val next = Button(context)
@@ -51,7 +51,7 @@ class MainScreen : BaseController() {
     }
     override fun onAttach(view: View) {
         super.onAttach(view)
-        mSubscriptions.add(store!!.observe(store!!.view)
+        mSubscriptions.add(store().observe(store().view)
                                   .distinctUntilChanged()
                                   .observeOn(AndroidSchedulers.mainThread())
                                   .map(mapTitle)

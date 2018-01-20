@@ -6,16 +6,55 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.oursky.skeleton"
-        minSdkVersion 18
+        minSdkVersion 16
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-        release {
+        debug {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro',
+                    'proguard-fresco.pro'
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'),
+                    'proguard-rules.pro',
+                    'proguard-fresco.pro'
+        }
+    }
+    // Product Favors: staging & prod
+    flavorDimensions "default"
+    productFlavors {
+        staging {
+            applicationId "com.oursky.skeleton.staging"
+            dimension "default"
+        }
+        prod {
+            // For production we use an id for the customer company
+            applicationId "com.company.skeleton"
+            dimension "default"
+        }
+    }
+    // Enable JAVA8 and lambda
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        abortOnError true
+        xmlReport false
+        htmlReport true
+        lintConfig file("lint.xml")
+        htmlOutput file("lint/lint-result.html")
+        xmlOutput file("lint/lint-result.xml")
+    }
+    testOptions {
+        unitTests {
+            returnDefaultValues = true
         }
     }
 }

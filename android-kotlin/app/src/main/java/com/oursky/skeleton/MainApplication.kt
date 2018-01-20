@@ -19,21 +19,24 @@ class MainApplication : Application() {
     //region Redux Store
     //---------------------------------------------------------------
     companion object {
-        private var storeRef: Int = 0
-        var store: AppStore? = null
+        private var sStoreRef: Int = 0
+        var sStore: AppStore? = null
         fun retainStore(context: Context) {
-            if (storeRef == 0) {
-                store = AppStore()
-                store?.load(context)
+            if (sStoreRef == 0) {
+                sStore = AppStore()
+                sStore?.load(context)
             }
-            storeRef++
+            sStoreRef++
         }
         fun releaseStore(context: Context) {
-            storeRef--
-            if (storeRef == 0) {
-                store?.save(context)
-                store = null
+            sStoreRef--
+            if (sStoreRef == 0) {
+                sStore?.save(context)
+                sStore = null
             }
+        }
+        fun store(): AppStore {
+            return sStore!!
         }
     }
     //---------------------------------------------------------------
