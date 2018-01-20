@@ -38,17 +38,21 @@ public class MainActivity extends AppCompatActivity {
     }
     @Override
     protected void onStart() {
-        super.onStart();
+        // NOTE: We need to get store ready before super.onStart(),
+        //       otherwise Conductor will re-create our view and cause NPE upon using store
         if (!mStoreRetained) {
             mStoreRetained = true;
             MainApplication.retainStore(this);
         }
+        super.onStart();
     }
     @Override
     protected void onResume() {
         super.onResume();
-        // Show main screen after a delay, can also do things like login to server
-        getWindow().getDecorView().postDelayed(() -> showAppContent(), 3000);
+        if (mInSplash) {
+            // Show main screen after a delay, can also do things like login to server
+            getWindow().getDecorView().postDelayed(() -> showAppContent(), 3000);
+        }
     }
     @Override
     protected void onPause() {

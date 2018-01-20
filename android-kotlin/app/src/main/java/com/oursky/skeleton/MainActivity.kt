@@ -33,16 +33,20 @@ class MainActivity : AppCompatActivity() {
         mInSplash = true
     }
     override fun onStart() {
-        super.onStart()
+        // NOTE: We need to get store ready before super.onStart(),
+        //       otherwise Conductor will re-create our view and cause NPE upon using store
         if (!mStoreRetained) {
             mStoreRetained = true
             MainApplication.retainStore(this)
         }
+        super.onStart()
     }
     override fun onResume() {
         super.onResume()
-        // Show main screen after a delay, can also do things like login to server
-        window.decorView.postDelayed({ showAppContent() }, 3000)
+        if (mInSplash) {
+            // Show main screen after a delay, can also do things like login to server
+            window.decorView.postDelayed({ showAppContent() }, 3000)
+        }
     }
     override fun onPause() {
         super.onPause()
@@ -75,7 +79,7 @@ class MainActivity : AppCompatActivity() {
         if (mInSplash) {
             mInSplash = false
             mRouter?.replaceTopController(RouterTransaction.with(MainScreen()))
-            store?.dispatch(ViewStore.Action.SetTitle("Hello World"))
+            store().dispatch(ViewStore.Action.SetTitle("Hello World"))
         }
     }
 }
