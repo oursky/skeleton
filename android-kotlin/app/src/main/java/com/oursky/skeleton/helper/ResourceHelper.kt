@@ -12,8 +12,10 @@ import android.util.TypedValue
 import java.lang.ref.WeakReference
 
 object ResourceHelper {
-    var context: WeakReference<Context>? = null
-
+    private var context: WeakReference<Context>? = null
+    fun setup(c: Context) {
+        context = WeakReference(c)
+    }
     fun dp(value: Float): Int {
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, context?.get()!!.resources.displayMetrics))
     }

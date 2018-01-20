@@ -25,12 +25,9 @@ object LP {
     }
 
     // ViewGroup
-    class ViewGroupLayoutBuilder internal constructor(width: Int, height: Int) {
-        private val mParams: ViewGroup.LayoutParams
+    class ViewGroupLayoutBuilder constructor(width: Int, height: Int) {
+        private val mParams = ViewGroup.LayoutParams(toSpec(width), toSpec(height))
 
-        init {
-            mParams = ViewGroup.LayoutParams(toSpec(width), toSpec(height))
-        }
         fun build(): ViewGroup.LayoutParams {
             return mParams
         }
@@ -38,11 +35,8 @@ object LP {
 
     // FrameLayout
     class FrameLayoutBuilder internal constructor(width: Int, height: Int, gravity: Int) {
-        private val mParams: FrameLayout.LayoutParams
+        private val mParams = FrameLayout.LayoutParams(toSpec(width), toSpec(height), gravity)
 
-        init {
-            mParams = FrameLayout.LayoutParams(toSpec(width), toSpec(height), gravity)
-        }
         fun setMargins(left: Int, top: Int, right: Int, bottom: Int): FrameLayoutBuilder {
             mParams.setMargins(left, top, right, bottom)
             return this
@@ -58,25 +52,25 @@ object LP {
 
     // LinearLayout
     class LinearLayoutBuilder {
-        private var mParams: LinearLayout.LayoutParams? = null
+        private var mParams: LinearLayout.LayoutParams
 
         internal constructor(width: Int, height: Int) {
             mParams = LinearLayout.LayoutParams(toSpec(width), toSpec(height))
         }
         internal constructor(width: Int, height: Int, gravity: Int) {
             mParams = LinearLayout.LayoutParams(toSpec(width), toSpec(height))
-            mParams!!.gravity = gravity
+            mParams.gravity = gravity
         }
         fun setWeight(weight: Int): LinearLayoutBuilder {
-            mParams!!.weight = weight.toFloat()
+            mParams.weight = weight.toFloat()
             return this
         }
         fun setMargins(left: Int, top: Int, right: Int, bottom: Int): LinearLayoutBuilder {
-            mParams!!.setMargins(left, top, right, bottom)
+            mParams.setMargins(left, top, right, bottom)
             return this
         }
         fun setGravity(gravity: Int): LinearLayoutBuilder {
-            mParams!!.gravity = gravity
+            mParams.gravity = gravity
             return this
         }
         fun build(): LinearLayout.LayoutParams? {
@@ -86,11 +80,8 @@ object LP {
 
     // Relative
     class RelativeLayoutBuilder internal constructor(width: Int, height: Int) {
-        private val mParams: RelativeLayout.LayoutParams
+        private val mParams = RelativeLayout.LayoutParams(width, height)
 
-        init {
-            mParams = RelativeLayout.LayoutParams(width, height)
-        }
         fun setMargins(left: Int, top: Int, right: Int, bottom: Int): RelativeLayoutBuilder {
             mParams.setMargins(left, top, right, bottom)
             return this
@@ -118,11 +109,8 @@ object LP {
 
     // Flexbox
     class FlexboxLayoutBuilder internal constructor(width: Int, height: Int) {
-        private val mParams: FlexboxLayout.LayoutParams
+        private val mParams = FlexboxLayout.LayoutParams(toSpec(width), toSpec(height))
 
-        init {
-            mParams = FlexboxLayout.LayoutParams(toSpec(width), toSpec(height))
-        }
         fun setMargins(left: Int, top: Int, right: Int, bottom: Int): FlexboxLayoutBuilder {
             mParams.setMargins(left, top, right, bottom)
             return this

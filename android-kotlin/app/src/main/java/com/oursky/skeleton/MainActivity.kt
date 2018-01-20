@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
     //region UI Events
     //---------------------------------------------------------------
     override fun onBackPressed() {
-        if (!mRouter!!.handleBack()) {
+        if (mRouter?.handleBack() != true) {
             super.onBackPressed()
         }
     }

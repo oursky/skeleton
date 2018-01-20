@@ -78,8 +78,8 @@ class SecondScreen : BaseController() {
     //endregion
 
     override fun handleBack(): Boolean {
-        if (mPopup!!.isVisible) {
-            mPopup!!.show(false)
+        if (mPopup?.isVisible == true) {
+            mPopup?.show(false)
             return true
         }
         return super.handleBack()
@@ -88,17 +88,17 @@ class SecondScreen : BaseController() {
     //region UI Events
     //---------------------------------------------------------------
     private val onBackClick = View.OnClickListener{ _ ->
-        if (mPopup!!.isVisible) {
-            mPopup!!.show(false)
+        if (mPopup?.isVisible == true) {
+            mPopup?.show(false)
         } else {
             popController()
         }
     }
     private val onPopupClick =  View.OnClickListener{ _ ->
-        mPopup!!.show(true)
+        mPopup?.show(true)
     }
-    private val onPopupClose = { _: DummyPopup ->
-        mPopup!!.show(false)
+    private val onPopupClose = fun (_: DummyPopup) {
+        mPopup?.show(false)
     }
     //---------------------------------------------------------------
     //endregion
