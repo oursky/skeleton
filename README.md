@@ -30,7 +30,7 @@ cp ../skeleton/.gitignore .
 vi LICENSE
 vi README.md
 git add .gitignore LICENSE README.md
-git commit -am "init repo"
+git commit -am "Initial commit"
 ```
 3. copy modules into new project, e.g. `android-java`
 ```
@@ -40,12 +40,12 @@ cp -R skeleton/android-java new-project/
    - App Name
    - Manifest(Android) or Info.plist(iOS)
    - Build Configuration (gradle, or xcode project)
-   - Rename package (`com.oursky.skeleton` to something else).  [How-To](https://stackoverflow.com/questions/16804093/android-studio-rename-package)
+   - Rename package (`com.oursky.skeleton` to something else).  [Android How-To](https://stackoverflow.com/questions/16804093/android-studio-rename-package)
 5. Add the modules and review changes
 ```
 git add android-java
 git status
-git commit -am "pull in skeleton"
+git commit -am "refs #1 project setup"
 ```
 6. Push your new project 
 ```
