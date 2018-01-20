@@ -62,8 +62,10 @@ class DummyPopup : BaseBottomPopup {
 
     //region UI Events
     //---------------------------------------------------------------
-    private val onCloseClick = OnClickListener{ view -> onClose?.invoke(this@DummyPopup) }
-    private val onCheckToggle = { view: Checkbox, isChecked: Boolean ->
+    private val onCloseClick = OnClickListener{ _ ->
+        onClose?.invoke(this@DummyPopup)
+    }
+    private val onCheckToggle = { _: Checkbox, isChecked: Boolean ->
         Logger.d("DummyPopup", "Checkbox: " + if (isChecked) "YES" else "NO")
     }
     //---------------------------------------------------------------

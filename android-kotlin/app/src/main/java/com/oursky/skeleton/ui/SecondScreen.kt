@@ -16,11 +16,12 @@ import com.oursky.skeleton.helper.LP
 import com.oursky.skeleton.ui.base.BaseController
 import com.oursky.skeleton.widget.ActionBar
 import com.oursky.skeleton.widget.Button
-
 import com.oursky.skeleton.helper.ResourceHelper.color
 import com.oursky.skeleton.helper.ResourceHelper.dp
 import com.oursky.skeleton.helper.ResourceHelper.font
 import com.oursky.skeleton.redux.ViewStore
+
+import com.oursky.skeleton.MainApplication.Companion.store
 
 class SecondScreen : BaseController() {
     private var mPopup: DummyPopup? = null
@@ -63,12 +64,11 @@ class SecondScreen : BaseController() {
     }
     override fun onAttach(view: View) {
         super.onAttach(view)
-        mSubscriptions.add(
-                MainApplication.store?.observe(MainApplication.store?.view!!)!!
-                        .distinctUntilChanged()
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .map(mapTitle)
-                        .subscribe(consumeTitle)
+        mSubscriptions.add(store!!.observe(store!!.view)
+                                  .distinctUntilChanged()
+                                  .observeOn(AndroidSchedulers.mainThread())
+                                  .map(mapTitle)
+                                  .subscribe(consumeTitle)
         )
     }
     override fun onDetach(view: View) {
@@ -106,11 +106,11 @@ class SecondScreen : BaseController() {
 
     //region Redux
     //---------------------------------------------------------------
-    private val mapTitle = Function<ViewStore.State,String> { state: ViewStore.State ->
+    private val mapTitle = Function<ViewStore.State,String> { state ->
         state.title
     }
-    private val consumeTitle = Consumer<String> { title: String? ->
-        // mTitle?.text = title
+    private val consumeTitle = Consumer<String> { mapped ->
+        // mTitle?.text = mapped
     }
     //---------------------------------------------------------------
     //endregion
