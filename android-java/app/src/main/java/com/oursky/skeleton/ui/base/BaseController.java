@@ -15,25 +15,18 @@ import com.bluelinelabs.conductor.ControllerChangeHandler;
 import com.bluelinelabs.conductor.ControllerChangeType;
 import com.bluelinelabs.conductor.RouterTransaction;
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
-import com.yheriatovych.reductor.Cancelable;
-import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
 
 import com.oursky.skeleton.helper.LP;
-import com.oursky.skeleton.redux.AppState;
-
-import static com.oursky.skeleton.MainApplication.store;
 
 //! Base class for a screen page
 @SuppressWarnings("WeakerAccess")
-public abstract class AppController extends Controller {
+public abstract class BaseController extends Controller {
     //region Lifecycle
     //---------------------------------------------------------------
-    public AppController() {
+    public BaseController() {
         super();
     }
-    public AppController(Bundle args) {
+    public BaseController(Bundle args) {
         super(args);
     }
     @Override
@@ -120,28 +113,6 @@ public abstract class AppController extends Controller {
                 .pushChangeHandler(pushEffect)
                 .popChangeHandler(popEffect)
         );
-    }
-    //---------------------------------------------------------------
-    //endregion
-
-    //region Redux
-    //---------------------------------------------------------------
-    protected Observable<AppState> createAppStateObservable() {
-        return Observable.create(new ObservableOnSubscribe<AppState>() {
-            private Cancelable mSubscribe;
-            @Override
-            public void subscribe(final ObservableEmitter<AppState> emitter) throws Exception {
-                mSubscribe = store().subscribe((state) -> emitter.onNext(state));
-                emitter.setCancellable(() -> {
-                    if (mSubscribe!=null) {
-                        mSubscribe.cancel();
-                        mSubscribe = null;
-                    }
-                });
-                // Sync initial state
-                emitter.onNext(store().getState());
-            }
-        });
     }
     //---------------------------------------------------------------
     //endregion

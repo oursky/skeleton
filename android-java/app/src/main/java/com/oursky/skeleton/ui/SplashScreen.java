@@ -9,11 +9,11 @@ import android.widget.TextView;
 
 import com.oursky.skeleton.R;
 import com.oursky.skeleton.helper.LP;
-import com.oursky.skeleton.ui.base.AppController;
+import com.oursky.skeleton.ui.base.BaseController;
 
 import static com.oursky.skeleton.helper.ResourceHelper.font;
 
-public class SplashScreen extends AppController {
+public class SplashScreen extends BaseController {
     @Override
     protected @NonNull View onCreateView(Context context) {
         FrameLayout layout = new FrameLayout(context);

@@ -15,7 +15,7 @@ import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
 import com.oursky.skeleton.helper.LP
 
-abstract class AppController : Controller {
+abstract class BaseController : Controller {
     protected abstract fun onCreateView(context: Context): View
 
     //region Lifecycle

@@ -43,10 +43,6 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         // Show main screen after a delay, can also do things like login to server
         window.decorView.postDelayed({ showAppContent() }, 3000)
-
-        store?.view?.subscribe {
-            println("${store?.view?.state?.title}")
-        }
     }
     override fun onPause() {
         super.onPause()

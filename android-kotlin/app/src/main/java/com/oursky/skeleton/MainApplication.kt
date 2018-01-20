@@ -24,14 +24,14 @@ class MainApplication : Application() {
         fun retainStore(context: Context) {
             if (storeRef == 0) {
                 store = AppStore()
-                // ReduxPersistence.load()
+                store?.load(context)
             }
             storeRef++
         }
         fun releaseStore(context: Context) {
             storeRef--
             if (storeRef == 0) {
-                // ReduxPersistence.save()
+                store?.save(context)
                 store = null
             }
         }

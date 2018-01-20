@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import com.oursky.skeleton.R;
 import com.oursky.skeleton.helper.LP;
 import com.oursky.skeleton.helper.Logger;
-import com.oursky.skeleton.ui.base.AppBottomPopup;
+import com.oursky.skeleton.ui.base.BaseBottomPopup;
 import com.oursky.skeleton.widget.Button;
 import com.oursky.skeleton.widget.Checkbox;
 
@@ -18,7 +18,7 @@ import static com.oursky.skeleton.helper.ResourceHelper.dp;
 import static com.oursky.skeleton.helper.ResourceHelper.color;
 import static com.oursky.skeleton.helper.ResourceHelper.font;
 
-public class DummyPopup extends AppBottomPopup {
+public class DummyPopup extends BaseBottomPopup {
     public interface EventListener {
         void onClose(DummyPopup view);
     }

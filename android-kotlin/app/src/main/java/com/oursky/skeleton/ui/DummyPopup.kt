@@ -10,7 +10,7 @@ import android.widget.LinearLayout
 import com.oursky.skeleton.R
 import com.oursky.skeleton.helper.LP
 import com.oursky.skeleton.helper.Logger
-import com.oursky.skeleton.ui.base.AppBottomPopup
+import com.oursky.skeleton.ui.base.BaseBottomPopup
 import com.oursky.skeleton.widget.Button
 import com.oursky.skeleton.widget.Checkbox
 
@@ -18,7 +18,7 @@ import com.oursky.skeleton.helper.ResourceHelper.dp
 import com.oursky.skeleton.helper.ResourceHelper.color
 import com.oursky.skeleton.helper.ResourceHelper.font
 
-class DummyPopup : AppBottomPopup {
+class DummyPopup : BaseBottomPopup {
     var onClose: ((self: DummyPopup) -> Unit)? = null
 
     //region Lifecycle

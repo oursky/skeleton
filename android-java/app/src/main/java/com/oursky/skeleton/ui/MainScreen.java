@@ -15,14 +15,15 @@ import io.reactivex.functions.Function;
 import com.oursky.skeleton.R;
 import com.oursky.skeleton.helper.LP;
 import com.oursky.skeleton.redux.AppState;
-import com.oursky.skeleton.ui.base.AppController;
+import com.oursky.skeleton.redux.AppStateObservable;
+import com.oursky.skeleton.ui.base.BaseController;
 import com.oursky.skeleton.widget.Button;
 
 import static com.oursky.skeleton.helper.ResourceHelper.dp;
 import static com.oursky.skeleton.helper.ResourceHelper.color;
 import static com.oursky.skeleton.helper.ResourceHelper.font;
 
-public class MainScreen extends AppController {
+public class MainScreen extends BaseController {
     private TextView mTitle;
     private CompositeDisposable mSubscriptions = new CompositeDisposable();
 
@@ -55,7 +56,7 @@ public class MainScreen extends AppController {
     @Override
     protected void onAttach(@NonNull View view) {
         super.onAttach(view);
-        mSubscriptions.add(createAppStateObservable()
+        mSubscriptions.add(AppStateObservable.create()
                 .distinctUntilChanged()
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(mapTitle)

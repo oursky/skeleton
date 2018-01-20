@@ -14,7 +14,7 @@ import com.oursky.skeleton.helper.ViewTransition;
 
 import static com.oursky.skeleton.helper.ResourceHelper.color;
 
-public abstract class AppBottomPopup extends FrameLayout {
+public abstract class BaseBottomPopup extends FrameLayout {
     private static final int ANIMATION_DURATION = 250;
     private View mDimBackground, mContentView;
     private boolean mVisible;
@@ -26,13 +26,13 @@ public abstract class AppBottomPopup extends FrameLayout {
 
     //region Lifecycle
     //---------------------------------------------------------------
-    public AppBottomPopup(Context context) {
+    public BaseBottomPopup(Context context) {
         super(context);
     }
-    public AppBottomPopup(Context context, AttributeSet attrs) {
+    public BaseBottomPopup(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-    public AppBottomPopup(Context context, AttributeSet attrs, int defStyle) {
+    public BaseBottomPopup(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
     }
     // NOTE: It is bad to call abstract function from constructor, as child's member is not properly instantiated during super construction execution.

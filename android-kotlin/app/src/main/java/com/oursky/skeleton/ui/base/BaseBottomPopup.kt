@@ -13,7 +13,7 @@ import com.oursky.skeleton.helper.ViewTransition
 
 import com.oursky.skeleton.helper.ResourceHelper.color
 
-abstract class AppBottomPopup : FrameLayout {
+abstract class BaseBottomPopup : FrameLayout {
     private val ANIMATION_DURATION = 250
     private var mDimBackground: View? = null
     private var mContentView: View? = null

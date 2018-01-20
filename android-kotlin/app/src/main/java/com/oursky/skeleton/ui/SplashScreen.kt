@@ -8,9 +8,9 @@ import android.widget.TextView
 import com.oursky.skeleton.R
 import com.oursky.skeleton.helper.LP
 import com.oursky.skeleton.helper.ResourceHelper.font
-import com.oursky.skeleton.ui.base.AppController
+import com.oursky.skeleton.ui.base.BaseController
 
-class SplashScreen : AppController() {
+class SplashScreen : BaseController() {
     override fun onCreateView(context: Context): View {
         val layout = FrameLayout(context)
         val tv = TextView(context)

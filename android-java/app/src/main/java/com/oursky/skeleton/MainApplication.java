@@ -45,14 +45,14 @@ public class MainApplication extends Application {
                             new ViewState(),
                             new ClientState())
             );
-            ReduxPersistence.load();
+            ReduxPersistence.load(context);
         }
         sStoreRefCount ++;
     }
     public static void releaseStore(Context context) {
         sStoreRefCount --;
         if (sStoreRefCount == 0) {
-            ReduxPersistence.save();
+            ReduxPersistence.save(context);
             sStore = null;
         }
     }

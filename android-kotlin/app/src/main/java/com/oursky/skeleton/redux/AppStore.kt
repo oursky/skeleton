@@ -1,5 +1,6 @@
 package com.oursky.skeleton.redux
 
+import android.content.Context
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
@@ -9,6 +10,16 @@ class AppStore {
     var client = ClientStore.createStore()
     var view = ViewStore.createStore()
 
+    //region Pesistence
+    fun load(context: Context) {
+        // TODO: Load from persistent stoage and fire restore actions
+    }
+    fun save(context: Context) {
+        // TODO: Save state to persistent stoage
+    }
+    //endregion
+
+    //region Redux glue code
     fun dispatch(action: Any) {
         when (action) {
             is ClientStore.Action -> client.dispatch(action)
@@ -16,7 +27,8 @@ class AppStore {
         }
     }
     fun<S> observe(store: Store<S>): Observable<S> {
-        return Observable.create<S>(object : ObservableOnSubscribe<S> {
+        // TODO: Explore RxKotlin way to do this?
+        return Observable.create(object : ObservableOnSubscribe<S> {
             private var mSubscribe: Store.Subscription? = null
             @Throws(Exception::class)
             override fun subscribe(emitter: ObservableEmitter<S>) {
@@ -32,4 +44,5 @@ class AppStore {
             }
         })
     }
+    //endregion
 }

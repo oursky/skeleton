@@ -12,14 +12,14 @@ import com.oursky.skeleton.helper.ResourceHelper.color
 import com.oursky.skeleton.helper.ResourceHelper.dp
 import com.oursky.skeleton.helper.ResourceHelper.font
 import com.oursky.skeleton.redux.ViewStore
-import com.oursky.skeleton.ui.base.AppController
+import com.oursky.skeleton.ui.base.BaseController
 import com.oursky.skeleton.widget.Button
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
 import io.reactivex.functions.Function
 
-class MainScreen : AppController() {
+class MainScreen : BaseController() {
     private var mTitle: TextView? = null
     private val mSubscriptions = CompositeDisposable()
 
