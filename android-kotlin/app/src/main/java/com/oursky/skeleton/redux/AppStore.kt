@@ -6,6 +6,7 @@ import io.reactivex.ObservableEmitter
 import io.reactivex.ObservableOnSubscribe
 import redux.api.Store
 
+@Suppress("unused", "UNUSED_PARAMETER")
 class AppStore {
     var client = ClientStore.createStore()
     var view = ViewStore.createStore()

@@ -9,6 +9,7 @@ import android.widget.RelativeLayout
 import com.google.android.flexbox.FlexboxLayout
 
 //! LayoutParams Builder
+@Suppress("unused")
 object LP {
     val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
     val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
@@ -25,7 +26,7 @@ object LP {
     }
 
     // ViewGroup
-    class ViewGroupLayoutBuilder constructor(width: Int, height: Int) {
+    class ViewGroupLayoutBuilder internal constructor(width: Int, height: Int) {
         private val mParams = ViewGroup.LayoutParams(toSpec(width), toSpec(height))
 
         fun build(): ViewGroup.LayoutParams {

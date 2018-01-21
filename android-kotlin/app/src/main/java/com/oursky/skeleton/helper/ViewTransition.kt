@@ -5,6 +5,7 @@ import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.view.View
 
+@Suppress("unused", "MemberVisibilityCanBePrivate")
 object ViewTransition {
     enum class Direction {
         UP, DOWN, LEFT, RIGHT
@@ -21,7 +22,7 @@ object ViewTransition {
             ani.addListener(object : Animator.AnimatorListener {
                 override fun onAnimationStart(animator: Animator) {}
                 override fun onAnimationEnd(animator: Animator) {
-                    cb?.invoke()
+                    cb.invoke()
                 }
                 override fun onAnimationCancel(animator: Animator) {}
                 override fun onAnimationRepeat(animator: Animator) {}

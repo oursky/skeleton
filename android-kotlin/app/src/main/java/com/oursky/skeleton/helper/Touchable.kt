@@ -3,6 +3,7 @@ package com.oursky.skeleton.helper
 import android.view.MotionEvent
 import android.view.View
 
+@Suppress("unused")
 object Touchable {
     fun make(view: View) {
         view.setOnTouchListener { v, ev ->

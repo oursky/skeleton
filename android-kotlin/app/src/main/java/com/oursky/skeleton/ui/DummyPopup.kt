@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
-import android.widget.CompoundButton
 import android.widget.LinearLayout
 
 import com.oursky.skeleton.R
@@ -23,9 +22,9 @@ class DummyPopup : BaseBottomPopup {
 
     //region Lifecycle
     //---------------------------------------------------------------
-    constructor(context: Context) : super(context) {}
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {}
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {}
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
     override fun onCreateView(context: Context): View {
         val layout = LinearLayout(context)
         layout.orientation = LinearLayout.VERTICAL
@@ -59,6 +58,9 @@ class DummyPopup : BaseBottomPopup {
     }
     //---------------------------------------------------------------
     //endregion
+
+    override fun onAttach(view: View){}
+    override fun onDetach(view: View){}
 
     //region UI Events
     //---------------------------------------------------------------

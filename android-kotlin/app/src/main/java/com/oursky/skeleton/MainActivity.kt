@@ -13,8 +13,8 @@ import com.oursky.skeleton.ui.MainScreen
 import com.oursky.skeleton.ui.SplashScreen
 
 class MainActivity : AppCompatActivity() {
-    private var mStoreRetained: Boolean = false
     private var mRouter: Router? = null
+    private var mStoreRetained: Boolean = false
     private var mInSplash: Boolean = false
 
     //region Lifecycle

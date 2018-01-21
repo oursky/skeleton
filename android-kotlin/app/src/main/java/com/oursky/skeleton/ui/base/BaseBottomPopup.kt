@@ -13,7 +13,13 @@ import com.oursky.skeleton.helper.ViewTransition
 
 import com.oursky.skeleton.helper.ResourceHelper.color
 
+@Suppress("unused", "PrivatePropertyName")
 abstract class BaseBottomPopup : FrameLayout {
+    // delegate
+    protected abstract fun onCreateView(context: Context): View
+    protected abstract fun onAttach(view: View)
+    protected abstract fun onDetach(view: View)
+
     private val ANIMATION_DURATION = 250
     private var mDimBackground: View? = null
     private var mContentView: View? = null
@@ -21,15 +27,11 @@ abstract class BaseBottomPopup : FrameLayout {
         private set
     private var mInTransition: Boolean = false
 
-    protected abstract fun onCreateView(context: Context): View
-    protected fun onAttach(view: View) {}
-    protected fun onDetach(view: View) {}
-
     //region Lifecycle
     //---------------------------------------------------------------
-    constructor(context: Context) : super(context) {}
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {}
-    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {}
+    constructor(context: Context) : super(context)
+    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
+    constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
 
     // NOTE: It is bad to call abstract function from constructor, as child's member is not properly instantiated during super construction execution.
     //       So, We will do raii to create our view before onAttach
@@ -39,13 +41,13 @@ abstract class BaseBottomPopup : FrameLayout {
         isVisible = false
         mInTransition = false
         mDimBackground = View(context)
-        mDimBackground!!.setBackgroundColor(color(R.color.immersive_background))
-        mDimBackground!!.isClickable = true
-        addView(mDimBackground, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build())
+        mDimBackground?.setBackgroundColor(color(R.color.immersive_background))
+        mDimBackground?.isClickable = true
+        mDimBackground?.visibility = View.INVISIBLE
         mContentView = onCreateView(context)
+        mContentView?.visibility = View.INVISIBLE
+        addView(mDimBackground, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build())
         addView(mContentView, LP.frame(LP.MATCH_PARENT, LP.WRAP_CONTENT, Gravity.BOTTOM).build())
-        mDimBackground!!.visibility = View.INVISIBLE
-        mContentView!!.visibility = View.INVISIBLE
     }
     //---------------------------------------------------------------
     //endregion
@@ -71,6 +73,7 @@ abstract class BaseBottomPopup : FrameLayout {
     }
     fun show(visible: Boolean) {
         if (mInTransition || isVisible == visible) return
+        if (mDimBackground == null || mContentView == null) return
         isVisible = visible
         if (isVisible) {
             mInTransition = true

@@ -20,41 +20,48 @@ import com.oursky.skeleton.helper.Touchable
 
 import com.oursky.skeleton.helper.ResourceHelper.dp
 
+@Suppress("unused", "UNUSED_PARAMETER")
 class Checkbox : LinearLayout {
-    var onCheckChanged: ((view: Checkbox, isChecked: Boolean) -> Unit)? = null
+    private val mCheckbox: AppCompatCheckBox
+    private val mLabel: TextView
 
-    private var mCheckbox: AppCompatCheckBox? = null
-    private var mLabel: TextView? = null
+    var onCheckChanged: ((view: Checkbox, isChecked: Boolean) -> Unit)? = null
     var isChecked: Boolean
-        get() = mCheckbox!!.isChecked
+        get() = mCheckbox.isChecked
         set(b) {
-            mCheckbox!!.isChecked = b
+            mCheckbox.isChecked = b
         }
 
     //region Lifecycle
     //---------------------------------------------------------------
     constructor(context: Context) : super(context) {
-        ctor(context, null, 0)
+        mCheckbox = AppCompatCheckBox(context)
+        mLabel = TextView(context)
+        initView(context, null, 0)
     }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
-        ctor(context, attrs, 0)
+        mCheckbox = AppCompatCheckBox(context)
+        mLabel = TextView(context)
+        initView(context, attrs, 0)
     }
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
-        ctor(context, attrs, defStyle)
+        mCheckbox = AppCompatCheckBox(context)
+        mLabel = TextView(context)
+        initView(context, attrs, defStyle)
     }
-    private fun ctor(context: Context, attrs: AttributeSet?, defStyle: Int) {
+    private fun initView(context: Context, attrs: AttributeSet?, defStyle: Int) {
         orientation = LinearLayout.HORIZONTAL
         gravity = Gravity.CENTER_VERTICAL
-        mCheckbox = AppCompatCheckBox(context)
-        mCheckbox!!.setButtonDrawable(android.R.color.transparent)
-        mLabel = TextView(context)
-        mLabel!!.setPadding(dp(16), 0, dp(16), 0)
-        mLabel!!.visibility = View.GONE
+        mCheckbox.setButtonDrawable(android.R.color.transparent)
+        mLabel.setPadding(dp(16), 0, dp(16), 0)
+        mLabel.visibility = View.GONE
         addView(mCheckbox, LP.linear(LP.WRAP_CONTENT, LP.WRAP_CONTENT).build())
         addView(mLabel, LP.linear(LP.MATCH_PARENT, LP.WRAP_CONTENT).build())
         Touchable.make(this)
-        mCheckbox!!.setOnCheckedChangeListener { view, isChecked -> onCheckChanged?.invoke(this@Checkbox, isChecked) }
-        setOnClickListener { view -> mCheckbox!!.isChecked = !mCheckbox!!.isChecked }
+        mCheckbox.setOnCheckedChangeListener { _, isChecked ->
+            onCheckChanged?.invoke(this@Checkbox, isChecked)
+        }
+        setOnClickListener { _ -> mCheckbox.isChecked = !mCheckbox.isChecked }
     }
     //---------------------------------------------------------------
     //endregion
@@ -67,30 +74,30 @@ class Checkbox : LinearLayout {
     //region Checkbox Functions
     //---------------------------------------------------------------
     fun setText(text: String) {
-        mLabel!!.text = text
-        mLabel!!.visibility = if (text.isEmpty()) View.GONE else View.VISIBLE
+        mLabel.text = text
+        mLabel.visibility = if (text.isEmpty()) View.GONE else View.VISIBLE
     }
     fun setText(@StringRes text: Int) {
-        mLabel!!.setText(text)
-        mLabel!!.visibility = View.VISIBLE
+        mLabel.setText(text)
+        mLabel.visibility = View.VISIBLE
     }
     fun setTextColor(@ColorInt color: Int) {
-        mLabel!!.setTextColor(color)
+        mLabel.setTextColor(color)
     }
     fun setTextColor(color: ColorStateList) {
-        mLabel!!.setTextColor(color)
+        mLabel.setTextColor(color)
     }
     fun setTextSize(s: Float) {
-        mLabel!!.textSize = s
+        mLabel.textSize = s
     }
-    fun setTypeface(tf: Typeface) {
-        mLabel!!.setTypeface(tf, Typeface.NORMAL)
+    fun setTypeface(tf: Typeface?) {
+        mLabel.setTypeface(tf, Typeface.NORMAL)
     }
     fun setTypeface(tf: Typeface, style: Int) {
-        mLabel!!.setTypeface(tf, style)
+        mLabel.setTypeface(tf, style)
     }
     fun setAllCaps(b: Boolean) {
-        mLabel!!.setAllCaps(b)
+        mLabel.setAllCaps(b)
     }
     //---------------------------------------------------------------
     //endregion
@@ -98,18 +105,18 @@ class Checkbox : LinearLayout {
     //region Icon
     //---------------------------------------------------------------
     fun setButtonDrawable(@DrawableRes resId: Int, width: Int, height: Int) {
-        val lp = mCheckbox!!.layoutParams
+        val lp = mCheckbox.layoutParams
         lp.width = width
         lp.height = height
-        mCheckbox!!.layoutParams = lp
-        mCheckbox!!.setBackgroundResource(resId)
+        mCheckbox.layoutParams = lp
+        mCheckbox.setBackgroundResource(resId)
     }
     fun setButtonDrawable(drawable: StateListDrawable, width: Int, height: Int) {
-        val lp = mCheckbox!!.layoutParams
+        val lp = mCheckbox.layoutParams
         lp.width = width
         lp.height = height
-        mCheckbox!!.layoutParams = lp
-        mCheckbox!!.background = drawable
+        mCheckbox.layoutParams = lp
+        mCheckbox.background = drawable
     }
     //---------------------------------------------------------------
     //endregion

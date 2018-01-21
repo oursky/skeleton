@@ -11,6 +11,7 @@ import android.util.SparseArray
 import android.util.TypedValue
 import java.lang.ref.WeakReference
 
+@Suppress("unused")
 object ResourceHelper {
     private var context: WeakReference<Context>? = null
     fun setup(c: Context) {
@@ -30,13 +31,14 @@ object ResourceHelper {
     }
 
     private var sFontCache: SparseArray<Typeface> = SparseArray()
-    fun font(@FontRes resId: Int): Typeface {
-        if (sFontCache.indexOfKey(resId) >= 0) {
-            return sFontCache.get(resId)
+    fun font(@FontRes resId: Int): Typeface? {
+        return if (sFontCache.indexOfKey(resId) >= 0) {
+            sFontCache.get(resId)
         } else {
-            val cache = ResourcesCompat.getFont(context?.get()!!, resId)
-            sFontCache.put(resId, cache)
-            return cache!!
+            val con = context?.get()
+            val cache = if (con!=null) ResourcesCompat.getFont(con, resId) else null
+            if (cache != null) sFontCache.put(resId, cache)
+            cache
         }
     }
 }

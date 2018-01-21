@@ -8,34 +8,30 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
+
 import com.bluelinelabs.conductor.Controller
 import com.bluelinelabs.conductor.ControllerChangeHandler
 import com.bluelinelabs.conductor.ControllerChangeType
 import com.bluelinelabs.conductor.RouterTransaction
 import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler
+
 import com.oursky.skeleton.helper.LP
 
+@Suppress("unused")
 abstract class BaseController : Controller {
+    // delegate
     protected abstract fun onCreateView(context: Context): View
 
     //region Lifecycle
     //---------------------------------------------------------------
-    constructor(): super() {
-    }
-    constructor(args: Bundle): super(args) {
-    }
+    constructor(): super()
+    constructor(args: Bundle): super(args)
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val context = container.context
         val view = onCreateView(context)
         val blockable = BlockableFrame(context)
         blockable.addView(view, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build())
         return blockable
-    }
-    override fun onAttach(view: View) {
-        super.onAttach(view)
-    }
-    override fun onDetach(view: View) {
-        super.onDetach(view)
     }
     //---------------------------------------------------------------
     //endregion
@@ -52,6 +48,7 @@ abstract class BaseController : Controller {
         val v = view
         if (v != null && v is BlockableFrame) v.setBlockTouch(false)
     }
+    @Suppress("unused", "UNUSED_PARAMETER")
     private class BlockableFrame : FrameLayout {
         private var mBlockTouch: Boolean = false
         constructor(context: Context) : super(context) {
