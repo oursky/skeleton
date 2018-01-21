@@ -5,6 +5,7 @@
 ![android](https://img.shields.io/badge/android-kotlin-brightgreen.svg)
 
 ### android-java project setup:
+- [lint rules](android-java/app/lint.xml)
 - i18n with `string.xml`
 - Custom font with `ResourcesCompat.getFont(context, fontId);`
 - Redux store with [Reductor](https://github.com/Yarikx/reductor), [RxAndroid](https://github.com/ReactiveX/RxAndroid),  [RxJava](https://github.com/ReactiveX/RxJava)
@@ -13,6 +14,7 @@
 - [Flexbox](https://github.com/google/flexbox-layout)
  
 ### android-kotlin project setup:
+- [lint rules](android-kotlin/app/lint.xml)
 - i18n with `string.xml`
 - Custom font with `ResourcesCompat.getFont(context, fontId)`
 - Redux store with [redux-kotlin](https://github.com/pardom/redux-kotlin), [RxAndroid](https://github.com/ReactiveX/RxAndroid),  [RxJava](https://github.com/ReactiveX/RxJava), [RxKotlin](https://github.com/ReactiveX/RxKotlin)
