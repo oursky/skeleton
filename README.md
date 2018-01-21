@@ -1,10 +1,11 @@
 # Mobile App Project Skeleton
-> Mobile app project skeleton
+> Standard template for mobile app project setup
 
 ![android](https://img.shields.io/badge/android-java-brightgreen.svg)
 ![android](https://img.shields.io/badge/android-kotlin-brightgreen.svg)
 
-### android-java project setup:
+### What's Included
+#### android-java:
 - [lint rules](android-java/app/lint.xml)
 - i18n with `string.xml`
 - Custom font with `ResourcesCompat.getFont(context, fontId);`
@@ -13,7 +14,7 @@
 - [Fresco](https://github.com/facebook/fresco)
 - [Flexbox](https://github.com/google/flexbox-layout)
  
-### android-kotlin project setup:
+#### android-kotlin:
 - [lint rules](android-kotlin/app/lint.xml)
 - i18n with `string.xml`
 - Custom font with `ResourcesCompat.getFont(context, fontId)`
@@ -63,6 +64,3 @@ git push -u oursky master
 - Setup [Crashlytics](https://fabric.io/kits/android/crashlytics) or [Sentry](https://sentry.io/welcome/)
 - Setup [Buddybuild](https://www.buddybuild.com/) or [Travis CI](https://travis-ci.org/)
 - Setup [HockeyApp](https://www.hockeyapp.net/)
-
-### License
-Distributed under the MIT license. See ``LICENSE`` for more information.
