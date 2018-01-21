@@ -61,7 +61,7 @@ git push -u oursky master
 
 ### What's Next
 - Setup [Crashlytics](https://fabric.io/kits/android/crashlytics) or [Sentry](https://sentry.io/welcome/)
-- Setup [Buddybuild](https://www.buddybuild.com/)
+- Setup [Buddybuild](https://www.buddybuild.com/) or [Travis CI](https://travis-ci.org/)
 - Setup [HockeyApp](https://www.hockeyapp.net/)
 
 ### License
