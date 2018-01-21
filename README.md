@@ -4,14 +4,18 @@
 ![android](https://img.shields.io/badge/android-java-brightgreen.svg)
 ![android](https://img.shields.io/badge/android-kotlin-brightgreen.svg)
 
-### android-java project uses:
-- Redux with [Reductor](https://github.com/Yarikx/reductor), [RxAndroid](https://github.com/ReactiveX/RxAndroid),  [RxJava](https://github.com/ReactiveX/RxJava)
+### android-java project setup:
+- i18n with `string.xml`
+- Custom font with `ResourcesCompat.getFont(context, fontId);`
+- Redux store with [Reductor](https://github.com/Yarikx/reductor), [RxAndroid](https://github.com/ReactiveX/RxAndroid),  [RxJava](https://github.com/ReactiveX/RxJava)
 - Navigation with [Conductor](https://github.com/bluelinelabs/Conductor)
 - [Fresco](https://github.com/facebook/fresco)
 - [Flexbox](https://github.com/google/flexbox-layout)
  
-### android-kotlin project uses:
-- Redux with [redux-kotlin](https://github.com/pardom/redux-kotlin), [RxAndroid](https://github.com/ReactiveX/RxAndroid),  [RxJava](https://github.com/ReactiveX/RxJava), [RxKotlin](https://github.com/ReactiveX/RxKotlin)
+### android-kotlin project setup:
+- i18n with `string.xml`
+- Custom font with `ResourcesCompat.getFont(context, fontId)`
+- Redux store with [redux-kotlin](https://github.com/pardom/redux-kotlin), [RxAndroid](https://github.com/ReactiveX/RxAndroid),  [RxJava](https://github.com/ReactiveX/RxJava), [RxKotlin](https://github.com/ReactiveX/RxKotlin)
 - Navigation with [Conductor](https://github.com/bluelinelabs/Conductor)
 - [Fresco](https://github.com/facebook/fresco)
 - [Flexbox](https://github.com/google/flexbox-layout)
