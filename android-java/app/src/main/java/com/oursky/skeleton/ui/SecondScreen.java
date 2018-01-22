@@ -32,14 +32,14 @@ public class SecondScreen extends BaseController {
     @Override
     protected @NonNull
     View onCreateView(Context context) {
-        LinearLayout layout = new LinearLayout(context);
-        layout.setOrientation(LinearLayout.VERTICAL);
+        LinearLayout contentView = new LinearLayout(context);
+        contentView.setOrientation(LinearLayout.VERTICAL);
 
         ActionBar actionbar = new ActionBar(context);
         actionbar.addLeftButton(R.drawable.ic_back, onBackClick);
         actionbar.addRightPadding();
         actionbar.setTitle(R.string.app_name);
-        layout.addView(actionbar, LP.linear(LP.MATCH_PARENT, LP.WRAP_CONTENT).build());
+        contentView.addView(actionbar, LP.linear(LP.MATCH_PARENT, LP.WRAP_CONTENT).build());
 
         Button popup = new Button(context);
         popup.setTextPadding(dp(32), dp(12), dp(32), dp(12));
@@ -48,20 +48,20 @@ public class SecondScreen extends BaseController {
         popup.setTypeface(font(R.font.barlow_condensed_bold));
         popup.setTextSize(24);
         popup.setText(R.string.main_popup);
-        layout.addView(popup, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT)
+        contentView.addView(popup, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT)
                                 .setMargins(0, dp(64), 0, 0)
                                 .build());
 
         mPopup = new DummyPopup(context);
 
-        FrameLayout contentView = new FrameLayout(context);
-        contentView.addView(layout, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build());
-        contentView.addView(mPopup, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build());
+        FrameLayout frame = new FrameLayout(context);
+        frame.addView(contentView, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build());
+        frame.addView(mPopup, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build());
 
         // Register event listener
         popup.setOnClickListener(onPopupClick);
         mPopup.setListener(onPopupEvent);
-        return contentView;
+        return frame;
     }
     @Override
     protected void onAttach(@NonNull View view) {
