@@ -13,6 +13,7 @@
 - Navigation with [Conductor](https://github.com/bluelinelabs/Conductor)
 - [Fresco](https://github.com/facebook/fresco)
 - [Flexbox](https://github.com/google/flexbox-layout)
+- A dummy webclient workflow with login action
  
 #### android-kotlin:
 - [lint rules](android-kotlin/app/lint.xml)
@@ -22,6 +23,7 @@
 - Navigation with [Conductor](https://github.com/bluelinelabs/Conductor)
 - [Fresco](https://github.com/facebook/fresco)
 - [Flexbox](https://github.com/google/flexbox-layout)
+- A dummy webclient workflow with login action
  
 ### Project Setup
 1. Clone skeleton repo into a **temperory** directory
