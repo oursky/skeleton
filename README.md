@@ -1,8 +1,8 @@
 # Mobile App Project Skeleton
 > Standard template for mobile app project setup
 
-![android](https://img.shields.io/badge/android-java-brightgreen.svg)
-![android](https://img.shields.io/badge/android-kotlin-brightgreen.svg)
+![android](https://img.shields.io/badge/android-java-blue.svg)
+![android](https://img.shields.io/badge/android-kotlin-blue.svg)
 [![Build Status](https://travis-ci.org/oursky/skeleton.svg?branch=master)](https://travis-ci.org/oursky/skeleton)
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
