@@ -3,7 +3,7 @@ package com.oursky.skeleton
 import android.app.Application
 import android.content.Context
 import com.oursky.skeleton.helper.ResourceHelper
-import com.oursky.skeleton.redux.*
+import com.oursky.skeleton.redux.AppStore
 
 class MainApplication : Application() {
     //region Lifecycle

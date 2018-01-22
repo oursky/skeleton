@@ -63,10 +63,10 @@ class SecondScreen : BaseController() {
     override fun onAttach(view: View) {
         super.onAttach(view)
         mSubscriptions.add(store().observe(store().view)
-                                  .distinctUntilChanged()
-                                  .observeOn(AndroidSchedulers.mainThread())
-                                  .map(mapTitle)
-                                  .subscribe(consumeTitle)
+                .distinctUntilChanged()
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(mapTitle)
+                .subscribe(consumeTitle)
         )
     }
     override fun onDetach(view: View) {
@@ -86,14 +86,14 @@ class SecondScreen : BaseController() {
 
     //region UI Events
     //---------------------------------------------------------------
-    private val onBackClick = View.OnClickListener{ _ ->
+    private val onBackClick = View.OnClickListener { _ ->
         if (mPopup?.isVisible == true) {
             mPopup?.show(false)
         } else {
             popController()
         }
     }
-    private val onPopupClick =  View.OnClickListener{ _ ->
+    private val onPopupClick = View.OnClickListener { _ ->
         mPopup?.show(true)
     }
     private val onPopupClose = fun (_: DummyPopup) {
@@ -104,10 +104,10 @@ class SecondScreen : BaseController() {
 
     //region Redux
     //---------------------------------------------------------------
-    private val mapTitle = Function<ViewStore.State,String> { state ->
+    private val mapTitle = Function<ViewStore.State, String> { state ->
         state.title
     }
-    private val consumeTitle = Consumer<String> { mapped ->
+    private val consumeTitle = Consumer<String> { _ ->
         // mTitle?.text = mapped
     }
     //---------------------------------------------------------------

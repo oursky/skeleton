@@ -3,7 +3,7 @@ package com.oursky.skeleton.client
 import android.os.Handler
 import com.oursky.skeleton.model.MyLoginSession
 
-@Suppress("unused", "PrivatePropertyName")
+@Suppress("unused", "PrivatePropertyName", "UNUSED_PARAMETER")
 class WebClient {
     private val MOCK_CALLBACK_DELAY = 3000L
 
@@ -27,7 +27,7 @@ class WebClient {
     }
 
     //region Auth Functions
-    fun login(input: Login.Input, cb: (Result,Login.Output?) -> Unit) {
+    fun login(input: Login.Input, cb: (Result, Login.Output?) -> Unit) {
         //TODO: Replace this with a real HTTP request
         mMockHandler.postDelayed({
             mAuthToken = "1234"
