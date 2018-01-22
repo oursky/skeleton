@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class KeyboardHelper {
     public static void showAndFocus(final Activity activity, View view) {
         // Uncomment below if you want to skip with hardware keyboard

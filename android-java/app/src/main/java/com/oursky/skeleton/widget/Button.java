@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.oursky.skeleton.helper.LP;
 import com.oursky.skeleton.helper.Touchable;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Button extends FrameLayout {
     private ImageView mIcon;
     private TextView mText;

@@ -3,6 +3,7 @@ package com.oursky.skeleton.helper;
 import android.util.Log;
 import com.oursky.skeleton.BuildConfig;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Logger {
     public static void d(String tag, String msg) {
         if (BuildConfig.DEBUG) Log.d(tag, msg);

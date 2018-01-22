@@ -5,18 +5,24 @@ import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
 import com.oursky.skeleton.R;
+import com.oursky.skeleton.client.Login;
 import com.oursky.skeleton.helper.LP;
+import com.oursky.skeleton.model.MyLoginSession;
 import com.oursky.skeleton.redux.AppState;
 import com.oursky.skeleton.redux.AppStateObservable;
+import com.oursky.skeleton.redux.ClientState;
 import com.oursky.skeleton.ui.base.BaseController;
+import com.oursky.skeleton.widget.ActionBar;
 import com.oursky.skeleton.widget.Button;
 
 import static com.oursky.skeleton.helper.ResourceHelper.dp;
@@ -24,7 +30,8 @@ import static com.oursky.skeleton.helper.ResourceHelper.color;
 import static com.oursky.skeleton.helper.ResourceHelper.font;
 
 public class MainScreen extends BaseController {
-    private TextView mTitle;
+    private ActionBar mActionBar;
+    private TextView mMessage;
     private CompositeDisposable mSubscriptions = new CompositeDisposable();
 
     //region Lifecycle
@@ -32,11 +39,17 @@ public class MainScreen extends BaseController {
     @Override
     protected @NonNull
     View onCreateView(Context context) {
-        FrameLayout layout = new FrameLayout(context);
-        mTitle = new TextView(context);
-        mTitle.setTextSize(32);
-        mTitle.setTypeface(font(R.font.barlow_condensed_bold));
-        layout.addView(mTitle, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER).build());
+        LinearLayout contentView = new LinearLayout(context);
+        contentView.setOrientation(LinearLayout.VERTICAL);
+
+        mActionBar = new ActionBar(context);
+        mActionBar.setTitle(R.string.app_name);
+        contentView.addView(mActionBar, LP.linear(LP.MATCH_PARENT, LP.WRAP_CONTENT).build());
+
+        mMessage = new TextView(context);
+        mMessage.setTextSize(24);
+        mMessage.setTypeface(font(R.font.barlow_condensed_regular));
+        contentView.addView(mMessage, LP.linear(LP.WRAP_CONTENT, LP.WRAP_CONTENT).build());
 
         Button next = new Button(context);
         next.setTextPadding(dp(32), dp(12), dp(32), dp(12));
@@ -45,22 +58,29 @@ public class MainScreen extends BaseController {
         next.setTypeface(font(R.font.barlow_condensed_bold));
         next.setTextSize(24);
         next.setText(R.string.main_next);
-        layout.addView(next, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER|Gravity.BOTTOM)
-                               .setMargins(0, dp(16), 0, dp(16))
-                               .build());
+        contentView.addView(next, LP.linear(LP.MATCH_PARENT, LP.WRAP_CONTENT)
+                                    .setMargins(dp(16), dp(16), dp(16), dp(16))
+                                    .build());
 
         // Register event listener
         next.setOnClickListener(onNextClick);
-        return layout;
+        return contentView;
     }
     @Override
     protected void onAttach(@NonNull View view) {
         super.onAttach(view);
-        mSubscriptions.add(AppStateObservable.create()
+        Observable<AppState> observable = AppStateObservable.create();
+        mSubscriptions.add(observable
                 .distinctUntilChanged()
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(mapTitle)
                 .subscribe(consumeTitle)
+        );
+        mSubscriptions.add(observable
+                .distinctUntilChanged()
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(mapLoginState)
+                .subscribe(consumeLoginState)
         );
     }
     @Override
@@ -83,7 +103,13 @@ public class MainScreen extends BaseController {
     //---------------------------------------------------------------
     private final Function<AppState,String> mapTitle = (state) -> state.view().title;
     private final Consumer<String> consumeTitle = (title) -> {
-        mTitle.setText(title);
+        mActionBar.setTitle(title);
+    };
+    private final Function<AppState,ClientState.APIState<Login.Output>>
+            mapLoginState = (state) -> state.client().login;
+    private final Consumer<ClientState.APIState<Login.Output>> consumeLoginState = (mapped) -> {
+        if (mapped.data == null || mapped.data.me == null) return;
+        mMessage.setText(getResources().getString(R.string.main_message, mapped.data.me.name));
     };
     //---------------------------------------------------------------
     //endregion

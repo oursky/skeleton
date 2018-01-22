@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 import com.google.android.flexbox.FlexboxLayout;
 
 //! LayoutParams Builder
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class LP {
     public static final int MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT;
     public static final int WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT;

@@ -11,6 +11,7 @@ import android.util.SparseArray;
 import android.util.TypedValue;
 import java.lang.ref.WeakReference;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class ResourceHelper {
     private static WeakReference<Context> sContext;
     public static void setContext(Context context) {

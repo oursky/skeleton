@@ -29,14 +29,14 @@ class SecondScreen : BaseController() {
     //region Lifecycle
     //---------------------------------------------------------------
     override fun onCreateView(context: Context): View {
-        val layout = LinearLayout(context)
-        layout.orientation = LinearLayout.VERTICAL
+        val contentView = LinearLayout(context)
+        contentView.orientation = LinearLayout.VERTICAL
 
         val actionbar = ActionBar(context)
         actionbar.addLeftButton(R.drawable.ic_back, onBackClick)
         actionbar.addRightPadding()
         actionbar.setTitle(R.string.app_name)
-        layout.addView(actionbar, LP.linear(LP.MATCH_PARENT, LP.WRAP_CONTENT).build())
+        contentView.addView(actionbar, LP.linear(LP.MATCH_PARENT, LP.WRAP_CONTENT).build())
 
         val popup = Button(context)
         popup.setTextPadding(dp(32), dp(12), dp(32), dp(12))
@@ -45,14 +45,14 @@ class SecondScreen : BaseController() {
         popup.setTypeface(font(R.font.barlow_condensed_bold))
         popup.setTextSize(24f)
         popup.setText(R.string.main_popup)
-        layout.addView(popup, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT)
+        contentView.addView(popup, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT)
                 .setMargins(0, dp(64), 0, 0)
                 .build())
 
         mPopup = DummyPopup(context)
 
         val frame = FrameLayout(context)
-        frame.addView(layout, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build())
+        frame.addView(contentView, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build())
         frame.addView(mPopup, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build())
 
         // Register event listener

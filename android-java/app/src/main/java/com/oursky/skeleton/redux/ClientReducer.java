@@ -1,7 +1,7 @@
 package com.oursky.skeleton.redux;
 
-import java.util.ArrayList;
-
+import com.oursky.skeleton.client.Login;
+import com.oursky.skeleton.client.WebClient;
 import com.yheriatovych.reductor.Reducer;
 import com.yheriatovych.reductor.annotations.AutoReducer;
 
@@ -15,13 +15,23 @@ public abstract class ClientReducer implements Reducer<ClientState> {
         return new ClientState();
     }
 
-    // Main Page (Switch with Bottom-Bar)
+    // Auth Functions
     // ---------------------------------------------------------------------------------------------
-    @AutoReducer.Action(value = ClientAction._Actions.ADDVALUE, from = ClientAction._Actions.class)
-    ClientState addValue(ClientState state, int value) {
+    @AutoReducer.Action(value = ClientAction._Actions.LOGIN_BEGIN, from = ClientAction._Actions.class)
+    ClientState loginBegin(ClientState state) {
+        if (state.login.inprogress) return state;   // unchanged
         ClientState newstate = new ClientState(state);
-        newstate.list = new ArrayList<>(state.list);    // force changing pointer
-        newstate.list.add(value);
+        newstate.login = new ClientState.APIState<>(state.login);
+        newstate.login.inprogress = true;
+        return newstate;
+    }
+    @AutoReducer.Action(value = ClientAction._Actions.LOGIN_COMPLETE, from = ClientAction._Actions.class)
+    ClientState loginComplete(ClientState state, WebClient.Result result, Login.Output data) {
+        ClientState newstate = new ClientState(state);
+        newstate.login = new ClientState.APIState<>();
+        newstate.login.inprogress = false;
+        newstate.login.result = result;
+        newstate.login.data = data;
         return newstate;
     }
 }

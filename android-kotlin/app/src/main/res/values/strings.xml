@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">skeleton</string>
     <string name="splash_title">Loading</string>
+    <string name="login_title">Login</string>
+    <string name="login_submit">Submit</string>
+    <string name="login_name_hint">Name</string>
+    <string name="login_pass_hint">Pass</string>
+    <string name="login_formerr">Invalid form entry</string>
+    <string name="main_message">Hello %1$s</string>
     <string name="main_next">next</string>
     <string name="main_popup">popup</string>
     <string name="dummy_close">close</string>

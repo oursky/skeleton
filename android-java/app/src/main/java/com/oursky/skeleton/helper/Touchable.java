@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.view.MotionEvent;
 import android.view.View;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Touchable {
     public static void make(@NonNull View view) {
         view.setOnTouchListener((v,ev) -> {

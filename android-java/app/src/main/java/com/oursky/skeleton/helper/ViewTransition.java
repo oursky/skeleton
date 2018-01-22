@@ -6,7 +6,7 @@ import android.animation.ObjectAnimator;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class ViewTransition {
     public interface OnCompleteListener {
         void onComplete();

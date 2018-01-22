@@ -1,17 +1,38 @@
 package com.oursky.skeleton.redux;
 
+import android.support.annotation.Keep;
 import android.support.annotation.NonNull;
-import java.util.ArrayList;
-import java.util.List;
+import android.support.annotation.Nullable;
 
-@SuppressWarnings("WeakerAccess")
+import com.oursky.skeleton.client.Login;
+import com.oursky.skeleton.client.WebClient;
+
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class ClientState {
-    public @NonNull List<Integer> list;
+    public static class APIState<T> {
+        public boolean inprogress;
+        public @NonNull WebClient.Result result;
+        public @Nullable
+        T data;
+        public APIState() {
+            inprogress = false;
+            result = WebClient.Result.OK;
+            data = null;
+        }
+        @Keep
+        public APIState(@NonNull APIState<T> o) {
+            inprogress = o.inprogress;
+            result = o.result;
+            data = o.data;
+        }
+    }
+
+    public @NonNull APIState<Login.Output> login;
 
     public ClientState() {
-        list = new ArrayList<>();
+        login = new APIState<>();
     }
     public ClientState(ClientState o) {
-        list = o.list;
+        login = o.login;
     }
 }
