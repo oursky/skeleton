@@ -57,8 +57,8 @@ class ActionBar : LinearLayout {
         bar.gravity = Gravity.CENTER_VERTICAL
         bar.addView(mLeft, LP.linear(LP.WRAP_CONTENT, LP.WRAP_CONTENT).build())
         bar.addView(mCenter, LP.linear(0, LP.WRAP_CONTENT)
-                                       .setWeight(1)
-                                       .build())
+                .setWeight(1)
+                .build())
         bar.addView(mRight, LP.linear(LP.WRAP_CONTENT, LP.WRAP_CONTENT).build())
         val line = View(context)
         line.setBackgroundColor(0x60000000)
@@ -78,8 +78,7 @@ class ActionBar : LinearLayout {
         mTitle?.typeface = font(R.font.barlow_condensed_medium)
         mTitle?.setTextColor(color(R.color.actionbar_title))
         mTitle?.textSize = 20f
-        mCenter.addView(mTitle, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER)
-                                  .build())
+        mCenter.addView(mTitle, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER).build())
     }
     fun setTitle(@StringRes title: Int) {
         raiiTitle()
@@ -109,22 +108,22 @@ class ActionBar : LinearLayout {
     fun addLeftPadding() {
         val view = View(context)
         mLeft.addView(view, LP.linear(dimen(R.dimen.actionbar_icon), dimen(R.dimen.actionbar_icon))
-                              .setMargins(0, 0, dp(16), 0)
-                              .build())
+                .setMargins(0, 0, dp(16), 0)
+                .build())
     }
     fun addRightButton(@DrawableRes icon: Int, listener: View.OnClickListener) {
         val button = Button(context)
         button.setIcon(icon, dimen(R.dimen.actionbar_icon), dimen(R.dimen.actionbar_icon))
         button.setOnClickListener(listener)
         mRight.addView(button, 0, LP.linear(dimen(R.dimen.actionbar_icon), dimen(R.dimen.actionbar_icon))
-                                           .setMargins(0, 0, dp(16), 0)
-                                           .build())
+                .setMargins(0, 0, dp(16), 0)
+                .build())
     }
     fun addRightPadding() {
         val view = View(context)
         mRight.addView(view, 0, LP.linear(dimen(R.dimen.actionbar_icon), dimen(R.dimen.actionbar_icon))
-                                        .setMargins(0, 0, dp(16), 0)
-                                        .build())
+                .setMargins(0, 0, dp(16), 0)
+                .build())
     }
     //---------------------------------------------------------------
     //endregion

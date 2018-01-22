@@ -1,0 +1,66 @@
+branches:
+  only: 
+    - master
+matrix:
+  include:
+    # android-java
+    - language: android
+      jdk: oraclejdk8
+      android:
+        components:
+          - tools
+          - platform-tools
+          - tools
+          - build-tools-27.0.3
+          # NOTE: https://stackoverflow.com/questions/47719282/i-cant-build-android-27-tool-27-0-2-with-travis-ci/47726910#47726910
+          # - android-27
+      before_cache:
+        - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+        - rm -rf $HOME/.gradle/caches/*/plugin-resolution/
+      cache:
+        directories:
+          - $HOME/.gradle/caches/
+          - $HOME/.gradle/wrapper/
+      before_install:
+        - yes | sdkmanager "platforms;android-27"
+      script:
+        - (cd android-java && ./gradlew check assembleDebug)
+      #after_success:
+      #  - ./hockyapp.sh
+      
+    # android-kotlin
+    - language: android
+      jdk: oraclejdk8
+      android:
+        components:
+          - tools
+          - platform-tools
+          - tools
+          - build-tools-27.0.3
+          # NOTE: https://stackoverflow.com/questions/47719282/i-cant-build-android-27-tool-27-0-2-with-travis-ci/47726910#47726910
+          # - android-27
+      before_cache:
+        - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+        - rm -rf $HOME/.gradle/caches/*/plugin-resolution/
+      cache:
+        directories:
+          - $HOME/.gradle/caches/
+          - $HOME/.gradle/wrapper/
+      before_install:
+        - yes | sdkmanager "platforms;android-27"
+      script:
+        - (cd android-kotlin && ./gradlew check assembleDebug)
+      #after_success:
+      #  - ./hockyapp.sh
+
+#    - language: objective-c
+#      os: osx
+#      osx_image: xcode9.2
+#      cache:
+#        - bundler
+#        - cocoapods
+#      script:
+#        - (cd ios-swift && pod repo update && pod install && xcodebuild -workspace skeleton.xcworkspace -scheme skeleton -sdk iphonesimulator11.2 build)
+
+notifications:
+  email: false

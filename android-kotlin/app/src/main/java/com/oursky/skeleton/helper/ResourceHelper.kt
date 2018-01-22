@@ -36,7 +36,7 @@ object ResourceHelper {
             sFontCache.get(resId)
         } else {
             val con = context?.get()
-            val cache = if (con!=null) ResourcesCompat.getFont(con, resId) else null
+            val cache = if (con != null) ResourcesCompat.getFont(con, resId) else null
             if (cache != null) sFontCache.put(resId, cache)
             cache
         }

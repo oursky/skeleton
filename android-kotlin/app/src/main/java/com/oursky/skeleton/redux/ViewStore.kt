@@ -10,7 +10,7 @@ class ViewStore {
     )
     // Actions
     sealed class Action {
-        class SetTitle(val title: String): Action()
+        class SetTitle(val title: String) : Action()
     }
     companion object {
         // Reducer

@@ -96,17 +96,20 @@ class Button : FrameLayout {
     //region Icon Functions
     //---------------------------------------------------------------
     @JvmOverloads
-    fun setIcon(@DrawableRes resId: Int, width: Int = FrameLayout.LayoutParams.MATCH_PARENT, height: Int = FrameLayout.LayoutParams.MATCH_PARENT, margin: Int = 0) {
+    fun setIcon(@DrawableRes resId: Int,
+                width: Int = FrameLayout.LayoutParams.MATCH_PARENT,
+                height: Int = FrameLayout.LayoutParams.MATCH_PARENT,
+                margin: Int = 0) {
         if (mIcon == null) {
             mIcon = ImageView(context)
             mIcon?.scaleType = mScaleType
             addView(mIcon, LP.frame(width, height, Gravity.CENTER_VERTICAL)
-                             .setMargins(margin, margin, margin, margin)
-                             .build())
+                    .setMargins(margin, margin, margin, margin)
+                    .build())
         } else {
             mIcon?.layoutParams = LP.frame(width, height, Gravity.CENTER_VERTICAL)
-                                    .setMargins(margin, margin, margin, margin)
-                                    .build()
+                    .setMargins(margin, margin, margin, margin)
+                    .build()
         }
         mIcon?.setImageResource(resId)
         mIcon?.isActivated = super.isActivated()

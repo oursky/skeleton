@@ -98,7 +98,7 @@ class MainActivity : AppCompatActivity() {
         state.login
     }
     private val consumeLoginState = Consumer<ClientStore.APIState<Login.Output>> { mapped ->
-        if (mInSplash) return@Consumer   // skip if in splash screen
+        if (mInSplash) return@Consumer // skip if in splash screen
         val logined = mapped?.data?.result == Login.Output.Result.Success
         if (mShowingMain != logined) {
             mShowingMain = logined

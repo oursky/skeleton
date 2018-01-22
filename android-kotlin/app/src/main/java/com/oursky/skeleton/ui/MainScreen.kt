@@ -63,10 +63,10 @@ class MainScreen : BaseController() {
     override fun onAttach(view: View) {
         super.onAttach(view)
         mSubscriptions.add(store().observe(store().view)
-                                  .distinctUntilChanged()
-                                  .observeOn(AndroidSchedulers.mainThread())
-                                  .map(mapTitle)
-                                  .subscribe(consumeTitle)
+                .distinctUntilChanged()
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(mapTitle)
+                .subscribe(consumeTitle)
         )
         mSubscriptions.add(store().observe(store().client)
                 .distinctUntilChanged()
@@ -84,7 +84,7 @@ class MainScreen : BaseController() {
 
     //region UI Events
     //---------------------------------------------------------------
-    private val onNextClick = View.OnClickListener{ _: View ->
+    private val onNextClick = View.OnClickListener { _: View ->
         pushController(SecondScreen())
     }
     //---------------------------------------------------------------
@@ -92,7 +92,7 @@ class MainScreen : BaseController() {
 
     //region Redux
     //---------------------------------------------------------------
-    private val mapTitle = Function<ViewStore.State,String> { state ->
+    private val mapTitle = Function<ViewStore.State, String> { state ->
         state.title
     }
     private val consumeTitle = Consumer<String> { mapped ->

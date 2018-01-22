@@ -3,6 +3,7 @@
 
 ![android](https://img.shields.io/badge/android-java-brightgreen.svg)
 ![android](https://img.shields.io/badge/android-kotlin-brightgreen.svg)
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
 ### What's Included
 #### android-java:
@@ -16,7 +17,7 @@
 - A dummy webclient workflow with login action
  
 #### android-kotlin:
-- [lint rules](android-kotlin/app/lint.xml)
+- [lint rules](android-kotlin/app/lint.xml) and [ktlint](https://github.com/shyiko/ktlint)
 - i18n with `string.xml`
 - Custom font with `ResourcesCompat.getFont(context, fontId)`
 - Redux store with [redux-kotlin](https://github.com/pardom/redux-kotlin), [RxAndroid](https://github.com/ReactiveX/RxAndroid),  [RxJava](https://github.com/ReactiveX/RxJava), [RxKotlin](https://github.com/ReactiveX/RxKotlin)

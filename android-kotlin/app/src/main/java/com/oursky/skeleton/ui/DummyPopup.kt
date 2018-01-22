@@ -59,12 +59,12 @@ class DummyPopup : BaseBottomPopup {
     //---------------------------------------------------------------
     //endregion
 
-    override fun onAttach(view: View){}
-    override fun onDetach(view: View){}
+    override fun onAttach(view: View) {}
+    override fun onDetach(view: View) {}
 
     //region UI Events
     //---------------------------------------------------------------
-    private val onCloseClick = OnClickListener{ _ ->
+    private val onCloseClick = OnClickListener { _ ->
         onClose?.invoke(this@DummyPopup)
     }
     private val onCheckToggle = { _: Checkbox, isChecked: Boolean ->

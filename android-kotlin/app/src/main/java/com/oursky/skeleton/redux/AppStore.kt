@@ -27,7 +27,7 @@ class AppStore {
             is ViewStore.Action -> view.dispatch(action)
         }
     }
-    fun<S> observe(store: Store<S>): Observable<S> {
+    fun <S> observe(store: Store<S>): Observable<S> {
         return Observable.create(object : ObservableOnSubscribe<S> {
             private var mSubscribe: Store.Subscription? = null
             @Throws(Exception::class)

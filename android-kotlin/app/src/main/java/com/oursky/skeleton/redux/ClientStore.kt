@@ -20,8 +20,8 @@ class ClientStore {
     )
     // Actions
     sealed class Action {
-        class LoginBegin: Action()
-        class LoginComplete(val result: WebClient.Result, val output: Login.Output?): Action()
+        class LoginBegin : Action()
+        class LoginComplete(val result: WebClient.Result, val output: Login.Output?) : Action()
     }
     companion object {
         // Reducer
@@ -44,7 +44,7 @@ class ClientStore {
             return redux.createStore(reducer, State())
         }
         // Action Creator
-        fun login(store: AppStore, input: Login.Input) : Boolean {
+        fun login(store: AppStore, input: Login.Input): Boolean {
             if (store.client.state.login.inprogress) return false
             store.dispatch(Action.LoginBegin())
             client().login(input, { result, output ->
