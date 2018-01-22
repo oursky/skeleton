@@ -20,7 +20,7 @@ public class WebClient {
     //region Callback Interface
     public enum Result { OK, ServerUnreachable, PayloadError }
     public interface Callback<T> {
-        void onComplete(@NonNull Result result, @Nullable T date);
+        void onComplete(@NonNull Result result, @Nullable T data);
     }
     //endregion
 

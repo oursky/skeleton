@@ -107,9 +107,9 @@ public class MainScreen extends BaseController {
     };
     private final Function<AppState,ClientState.APIState<Login.Output>>
             mapLoginState = (state) -> state.client().login;
-    private final Consumer<ClientState.APIState<Login.Output>> consumeLoginState = (state) -> {
-        if (state.data == null || state.data.me == null) return;
-        mMessage.setText(getResources().getString(R.string.main_message, state.data.me.name));
+    private final Consumer<ClientState.APIState<Login.Output>> consumeLoginState = (mapped) -> {
+        if (mapped.data == null || mapped.data.me == null) return;
+        mMessage.setText(getResources().getString(R.string.main_message, mapped.data.me.name));
     };
     //---------------------------------------------------------------
     //endregion

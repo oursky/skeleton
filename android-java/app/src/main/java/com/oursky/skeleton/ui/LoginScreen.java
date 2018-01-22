@@ -111,8 +111,8 @@ public class LoginScreen extends BaseController {
     //---------------------------------------------------------------
     private final Function<AppState,ClientState.APIState<Login.Output>>
             mapLoginState = (state) -> state.client().login;
-    private final Consumer<ClientState.APIState<Login.Output>> consumeLoginState = (state) -> {
-        boolean enableUI = !state.inprogress;
+    private final Consumer<ClientState.APIState<Login.Output>> consumeLoginState = (mapped) -> {
+        boolean enableUI = !mapped.inprogress;
         mSubmit.setEnabled(enableUI);
         mName.setEnabled(enableUI);
         mPass.setEnabled(enableUI);

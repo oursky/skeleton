@@ -122,9 +122,9 @@ public class MainActivity extends AppCompatActivity {
     //---------------------------------------------------------------
     private final Function<AppState,ClientState.APIState<Login.Output>>
             mapLoginState = (state) -> state.client().login;
-    private final Consumer<ClientState.APIState<Login.Output>> consumeLoginState = (state) -> {
+    private final Consumer<ClientState.APIState<Login.Output>> consumeLoginState = (mapped) -> {
         if (mInSplash) return;  // skip if in splash screen
-        Login.Output login = store().getState().client().login.data;
+        Login.Output login = mapped.data;
         boolean logined = login != null && login.result == Login.Output.Result.Success;
         if (mShowingMain != logined) {
             mShowingMain = logined;

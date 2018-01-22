@@ -1,6 +1,12 @@
 <resources>
     <string name="app_name">骨架</string>
     <string name="splash_title">載入中</string>
+    <string name="login_title">登入</string>
+    <string name="login_submit">發送</string>
+    <string name="login_name_hint">Name</string>
+    <string name="login_pass_hint">Pass</string>
+    <string name="login_formerr">輸入錯誤</string>
+    <string name="main_message">%1$s 你好</string>
     <string name="main_next">下一步</string>
     <string name="main_popup">彈出</string>
     <string name="dummy_close">關閉</string>
