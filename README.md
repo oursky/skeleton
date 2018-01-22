@@ -17,7 +17,7 @@
 - A dummy webclient workflow with login action
  
 #### android-kotlin:
-- [lint rules](android-kotlin/app/lint.xml)
+- [lint rules](android-kotlin/app/lint.xml) and [ktlint](https://github.com/shyiko/ktlint)
 - i18n with `string.xml`
 - Custom font with `ResourcesCompat.getFont(context, fontId)`
 - Redux store with [redux-kotlin](https://github.com/pardom/redux-kotlin), [RxAndroid](https://github.com/ReactiveX/RxAndroid),  [RxJava](https://github.com/ReactiveX/RxJava), [RxKotlin](https://github.com/ReactiveX/RxKotlin)
