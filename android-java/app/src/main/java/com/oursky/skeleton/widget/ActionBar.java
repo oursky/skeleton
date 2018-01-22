@@ -18,6 +18,7 @@ import static com.oursky.skeleton.helper.ResourceHelper.dp;
 import static com.oursky.skeleton.helper.ResourceHelper.font;
 import static com.oursky.skeleton.helper.ResourceHelper.color;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class ActionBar extends LinearLayout {
     private LinearLayout mLeft, mRight;
     private FrameLayout mCenter;

@@ -19,7 +19,7 @@ import com.bluelinelabs.conductor.changehandler.HorizontalChangeHandler;
 import com.oursky.skeleton.helper.LP;
 
 //! Base class for a screen page
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class BaseController extends Controller {
     //region Lifecycle
     //---------------------------------------------------------------

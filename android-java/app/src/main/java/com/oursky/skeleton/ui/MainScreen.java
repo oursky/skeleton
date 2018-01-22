@@ -32,11 +32,11 @@ public class MainScreen extends BaseController {
     @Override
     protected @NonNull
     View onCreateView(Context context) {
-        FrameLayout layout = new FrameLayout(context);
+        FrameLayout contentView = new FrameLayout(context);
         mTitle = new TextView(context);
         mTitle.setTextSize(32);
         mTitle.setTypeface(font(R.font.barlow_condensed_bold));
-        layout.addView(mTitle, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER).build());
+        contentView.addView(mTitle, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER).build());
 
         Button next = new Button(context);
         next.setTextPadding(dp(32), dp(12), dp(32), dp(12));
@@ -45,13 +45,13 @@ public class MainScreen extends BaseController {
         next.setTypeface(font(R.font.barlow_condensed_bold));
         next.setTextSize(24);
         next.setText(R.string.main_next);
-        layout.addView(next, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER|Gravity.BOTTOM)
+        contentView.addView(next, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER|Gravity.BOTTOM)
                                .setMargins(0, dp(16), 0, dp(16))
                                .build());
 
         // Register event listener
         next.setOnClickListener(onNextClick);
-        return layout;
+        return contentView;
     }
     @Override
     protected void onAttach(@NonNull View view) {

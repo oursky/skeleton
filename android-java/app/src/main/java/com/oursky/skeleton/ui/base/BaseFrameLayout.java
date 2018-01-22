@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.FrameLayout;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class BaseFrameLayout extends FrameLayout {
     // delegate
     protected abstract void onAttach(@NonNull View view);

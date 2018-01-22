@@ -16,12 +16,12 @@ import static com.oursky.skeleton.helper.ResourceHelper.font;
 public class SplashScreen extends BaseController {
     @Override
     protected @NonNull View onCreateView(Context context) {
-        FrameLayout layout = new FrameLayout(context);
+        FrameLayout contentView = new FrameLayout(context);
         TextView tv = new TextView(context);
         tv.setTypeface(font(R.font.barlow_condensed_thin));
         tv.setTextSize(32);
         tv.setText(R.string.splash_title);
-        layout.addView(tv, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER).build());
-        return layout;
+        contentView.addView(tv, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.CENTER).build());
+        return contentView;
     }
 }

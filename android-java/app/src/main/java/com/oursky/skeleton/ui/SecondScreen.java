@@ -54,14 +54,14 @@ public class SecondScreen extends BaseController {
 
         mPopup = new DummyPopup(context);
 
-        FrameLayout frame = new FrameLayout(context);
-        frame.addView(layout, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build());
-        frame.addView(mPopup, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build());
+        FrameLayout contentView = new FrameLayout(context);
+        contentView.addView(layout, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build());
+        contentView.addView(mPopup, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build());
 
         // Register event listener
         popup.setOnClickListener(onPopupClick);
         mPopup.setListener(onPopupEvent);
-        return frame;
+        return contentView;
     }
     @Override
     protected void onAttach(@NonNull View view) {

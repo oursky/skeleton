@@ -14,6 +14,7 @@ import com.oursky.skeleton.helper.ViewTransition;
 
 import static com.oursky.skeleton.helper.ResourceHelper.color;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public abstract class BaseBottomPopup extends FrameLayout {
     private static final int ANIMATION_DURATION = 250;
     private View mDimBackground, mContentView;

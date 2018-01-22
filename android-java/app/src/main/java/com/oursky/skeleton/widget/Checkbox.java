@@ -20,6 +20,7 @@ import com.oursky.skeleton.helper.Touchable;
 
 import static com.oursky.skeleton.helper.ResourceHelper.dp;
 
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class Checkbox extends LinearLayout {
     public interface OnCheckedChangeListener {
         void onCheckedChanged(Checkbox view, boolean isChecked);
