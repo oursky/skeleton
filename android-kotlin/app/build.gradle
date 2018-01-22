@@ -59,11 +59,17 @@ android {
     }
 }
 
+configurations {
+    ktlint
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    ktlint "com.github.shyiko:ktlint:0.15.0"
 
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
     implementation 'com.android.support:appcompat-v7:27.0.2'
@@ -85,4 +91,22 @@ dependencies {
     implementation 'com.facebook.fresco:fresco:1.7.1'
     // Flexbox: https://github.com/google/flexbox-layout
     implementation 'com.google.android:flexbox:0.3.0'
+}
+
+task ktlint(type: JavaExec, group: "verification") {
+    description = "Check Kotlin code style."
+    classpath = configurations.ktlint
+    main = "com.github.shyiko.ktlint.Main"
+    args "src/main/**/*.kt", "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
+    // to generate report in checkstyle format prepend following args:
+    // "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
+    // see https://github.com/shyiko/ktlint#usage for more
+}
+check.dependsOn ktlint
+
+task ktlintFormat(type: JavaExec, group: "formatting") {
+    description = "Fix Kotlin code style deviations."
+    classpath = configurations.ktlint
+    main = "com.github.shyiko.ktlint.Main"
+    args "-F", "src/main/**/*.kt"
 }

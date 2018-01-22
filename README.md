@@ -3,6 +3,7 @@
 
 ![android](https://img.shields.io/badge/android-java-brightgreen.svg)
 ![android](https://img.shields.io/badge/android-kotlin-brightgreen.svg)
+[![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
 ### What's Included
 #### android-java:
