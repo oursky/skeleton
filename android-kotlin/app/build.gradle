@@ -91,6 +91,10 @@ dependencies {
     implementation 'com.facebook.fresco:fresco:1.7.1'
     // Flexbox: https://github.com/google/flexbox-layout
     implementation 'com.google.android:flexbox:0.3.0'
+    // OkHttp: https://github.com/square/okhttp
+    implementation 'com.squareup.okhttp3:okhttp:3.9.1'
+    // json: https://github.com/cbeust/klaxon
+    implementation 'com.beust:klaxon:2.1.1'
 }
 
 task ktlint(type: JavaExec, group: "verification") {

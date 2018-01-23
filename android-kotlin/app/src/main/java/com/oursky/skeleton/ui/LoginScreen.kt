@@ -28,7 +28,7 @@ import com.oursky.skeleton.widget.ActionBar
 class LoginScreen : BaseController() {
     private val mSubscriptions = CompositeDisposable()
     private var mActionBar: ActionBar? = null
-    private var mName: EditText? = null
+    private var mEamil: EditText? = null
     private var mPass: EditText? = null
     private var mSubmit: Button? = null
 
@@ -42,11 +42,11 @@ class LoginScreen : BaseController() {
         mActionBar?.setTitle(R.string.login_title)
         contentView.addView(mActionBar, LP.linear(LP.MATCH_PARENT, LP.WRAP_CONTENT).build())
 
-        mName = EditText(context)
-        mName?.setTextSize(20f)
-        mName?.setTypeface(font(R.font.barlow_condensed_regular))
-        mName?.setHint(R.string.login_name_hint)
-        contentView.addView(mName, LP.linear(LP.MATCH_PARENT, LP.WRAP_CONTENT).build())
+        mEamil = EditText(context)
+        mEamil?.setTextSize(20f)
+        mEamil?.setTypeface(font(R.font.barlow_condensed_regular))
+        mEamil?.setHint(R.string.login_name_hint)
+        contentView.addView(mEamil, LP.linear(LP.MATCH_PARENT, LP.WRAP_CONTENT).build())
 
         mPass = EditText(context)
         mPass?.setTextSize(20f)
@@ -88,9 +88,9 @@ class LoginScreen : BaseController() {
     //---------------------------------------------------------------
     private val onSubmitClick = View.OnClickListener { _: View ->
         KeyboardHelper.hide(activity!!)
-        val name = mName?.text.toString()
+        val email = mEamil?.text.toString()
         val pass = mPass?.text.toString()
-        val input = Login.Input(name, pass)
+        val input = Login.Input(email, pass)
         if (validateForm(input)) {
             ClientStore.login(store(), input)
         } else {
@@ -108,7 +108,7 @@ class LoginScreen : BaseController() {
     private val consumeLoginState = Consumer<ClientStore.APIState<Login.Output>> { mapped ->
         val enableUI = !mapped.inprogress
         mSubmit?.isEnabled = enableUI
-        mName?.isEnabled = enableUI
+        mEamil?.isEnabled = enableUI
         mPass?.isEnabled = enableUI
     }
     //---------------------------------------------------------------
@@ -116,7 +116,7 @@ class LoginScreen : BaseController() {
 
     //region Form Validation
     private fun validateForm(input: Login.Input): Boolean {
-        if (input.name.isEmpty()) return false
+        if (input.email.isEmpty()) return false
         if (input.pass.isEmpty()) return false
         return true
     }

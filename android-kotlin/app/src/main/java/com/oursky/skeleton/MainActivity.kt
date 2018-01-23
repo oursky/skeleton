@@ -61,7 +61,7 @@ class MainActivity : AppCompatActivity() {
         )
         if (mInSplash) {
             // Show main screen after a delay, can also do things like login to server
-            window.decorView.postDelayed({ showAppContent() }, 3000)
+            window.decorView.postDelayed({ showAppContent() }, AppConfig.SLPASH_DURATION)
         }
     }
     override fun onPause() {
@@ -94,15 +94,14 @@ class MainActivity : AppCompatActivity() {
 
     //region Redux
     //---------------------------------------------------------------
-    private val mapLoginState = Function<ClientStore.State, ClientStore.APIState<Login.Output>> { state ->
-        state.login
+    private val mapLoginState = Function<ClientStore.State, Boolean> { state ->
+        state.isLogined
     }
-    private val consumeLoginState = Consumer<ClientStore.APIState<Login.Output>> { mapped ->
+    private val consumeLoginState = Consumer<Boolean> { mapped ->
         if (mInSplash) return@Consumer // skip if in splash screen
-        val logined = mapped?.data?.result == Login.Output.Result.Success
-        if (mShowingMain != logined) {
-            mShowingMain = logined
-            mRouter?.replaceTopController(RouterTransaction.with(if (logined) MainScreen() else LoginScreen()))
+        if (mShowingMain != mapped) {
+            mShowingMain = mapped
+            mRouter?.replaceTopController(RouterTransaction.with(if (mShowingMain) MainScreen() else LoginScreen()))
         }
     }
     //---------------------------------------------------------------
@@ -111,10 +110,8 @@ class MainActivity : AppCompatActivity() {
     private fun showAppContent() {
         if (mInSplash) {
             mInSplash = false
-            val login = store().client.state.login.data
-            val logined = login?.result === Login.Output.Result.Success
-            mShowingMain = logined
-            mRouter?.replaceTopController(RouterTransaction.with(if (logined) MainScreen() else LoginScreen()))
+            mShowingMain = store().client.state.isLogined
+            mRouter?.replaceTopController(RouterTransaction.with(if (mShowingMain) MainScreen() else LoginScreen()))
             store().dispatch(ViewStore.Action.SetTitle("Hello World"))
         }
     }

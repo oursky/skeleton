@@ -3,6 +3,7 @@ package com.oursky.skeleton.redux
 import com.oursky.skeleton.client.Login
 import com.oursky.skeleton.client.WebClient
 import com.oursky.skeleton.client.WebClient.Companion.client
+import com.oursky.skeleton.model.MyLoginSession
 import redux.api.Reducer
 import redux.api.Store
 
@@ -11,13 +12,17 @@ class ClientStore {
     // Generalized APIState
     data class APIState<out T>(
             val inprogress: Boolean = false,
-            val result: WebClient.Result = WebClient.Result.OK,
+            val result: WebClient.Result = WebClient.Result.Success,
             val data: T? = null
     )
     // State
     data class State(
-        val login: APIState<Login.Output> = APIState()
-    )
+        val login: APIState<Login.Output> = APIState(),
+        val me: MyLoginSession? = null
+    ) {
+        val isLogined: Boolean
+            get() = this.me != null
+    }
     // Actions
     sealed class Action {
         class LoginBegin : Action()
