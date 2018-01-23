@@ -11,8 +11,8 @@ import com.google.android.flexbox.FlexboxLayout
 //! LayoutParams Builder
 @Suppress("unused")
 object LP {
-    val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
-    val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
+    const val MATCH_PARENT = ViewGroup.LayoutParams.MATCH_PARENT
+    const val WRAP_CONTENT = ViewGroup.LayoutParams.WRAP_CONTENT
 
     private fun toSpec(value: Int): Int {
         return when (value) {

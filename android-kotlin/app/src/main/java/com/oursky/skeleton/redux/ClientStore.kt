@@ -9,7 +9,7 @@ import redux.api.Store
 @Suppress("unused")
 class ClientStore {
     // Generalized APIState
-    data class APIState<T>(
+    data class APIState<out T>(
             val inprogress: Boolean = false,
             val result: WebClient.Result = WebClient.Result.OK,
             val data: T? = null
