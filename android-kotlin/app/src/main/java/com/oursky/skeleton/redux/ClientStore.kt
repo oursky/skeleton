@@ -16,7 +16,7 @@ class ClientStore {
     )
     // State
     data class State(
-        var login: APIState<Login.Output> = APIState()
+        val login: APIState<Login.Output> = APIState()
     )
     // Actions
     sealed class Action {
@@ -28,14 +28,14 @@ class ClientStore {
         private val reducer = Reducer<State> { state, action ->
             when (action) {
                 is Action.LoginBegin -> {
-                    val newstate = state.copy()
-                    newstate.login = APIState(inprogress = true)
-                    newstate
+                    state.copy(
+                            login = APIState(inprogress = true)
+                    )
                 }
                 is Action.LoginComplete -> {
-                    val newstate = state.copy()
-                    newstate.login = APIState(inprogress = false, result = action.result, data = action.output)
-                    newstate
+                    state.copy(
+                            login = APIState(inprogress = false, result = action.result, data = action.output)
+                    )
                 }
                 else -> state
             }
