@@ -8,7 +8,6 @@ import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.oursky.skeleton.MainApplication.Companion.store
-import com.oursky.skeleton.client.Login
 import com.oursky.skeleton.redux.ClientStore
 import com.oursky.skeleton.redux.ViewStore
 import com.oursky.skeleton.ui.LoginScreen
