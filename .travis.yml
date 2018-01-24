@@ -3,6 +3,19 @@ branches:
     - master
 matrix:
   include:
+    # backend-nodejs
+    - language: node_js
+      node_js:
+        - "8"
+      cache:
+        directories:
+          - "backend-nodejs/app/node_modules"
+      before_install:
+        - (cd backend-nodejs/app && npm install)
+      script:
+        - (cd backend-nodejs/app && npm run lint)
+        - (cd backend-nodejs/app && npm run build)
+        
     # android-java
     - language: android
       jdk: oraclejdk8
