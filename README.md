@@ -1,5 +1,5 @@
-# Mobile App Project Skeleton
-> Standard template for mobile app project setup
+# Project Skeleton
+> Standard template for mobile app and backend project setup
 
 ![android](https://img.shields.io/badge/android-java-blue.svg)
 ![android](https://img.shields.io/badge/android-kotlin-blue.svg)
@@ -32,6 +32,8 @@
 - [standard package](backend-nodejs/app/package.json)
 - Typescript
 - docker with redis & mysql
+
+---
 
 ### Android Setup
 1. Clone skeleton repo into a **temperory** directory
@@ -70,7 +72,28 @@ git remote add oursky https://github.com/oursky/new-project
 git push -u oursky master
 ```
 
+---
+
 ### Backend Setup
+1. Init your repo with the above instruction, if not already.
+2. copy modules into new project, e.g. `backend-nodejs`
+```
+cp -R skeleton/backend-nodejs new-project/
+```
+3. Adjust code
+   - package.json
+4. Add the modules and review changes
+```
+git add backend-nodejs
+git status
+git commit -am "refs #1 project setup"
+```
+5. Push your new project 
+```
+git remote add oursky https://github.com/oursky/new-project
+git push -u oursky master
+```
+#### Run Docker
 ##### First time setup
 ```
 > cd backend-nodejs
@@ -87,6 +110,8 @@ git push -u oursky master
 > cd backend-nodejs
 > docker-compose up -d
 ```
+
+---
 
 ### What's Next
 - Setup [Crashlytics](https://fabric.io/kits/android/crashlytics) or [Sentry](https://sentry.io/welcome/)
