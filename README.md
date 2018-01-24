@@ -26,8 +26,14 @@
 - [Fresco](https://github.com/facebook/fresco)
 - [Flexbox](https://github.com/google/flexbox-layout)
 - A dummy webclient workflow with login action
- 
-### Project Setup
+
+#### backend-nodejs
+- [lint rules](backend-nodejs/app/tslint.json)
+- [standard package](backend-nodejs/app/package.json)
+- Typescript
+- docker with redis & mysql
+
+### Android Setup
 1. Clone skeleton repo into a **temperory** directory
 ```
 git clone https://github.com/oursky/skeleton skeleton
@@ -49,9 +55,9 @@ cp -R skeleton/android-java new-project/
 ```
 4. Adjust code
    - App Name
-   - Manifest(Android) or Info.plist(iOS)
-   - Build Configuration (gradle, or xcode project)
-   - Rename package (`com.oursky.skeleton` to something else).  [Android How-To](https://stackoverflow.com/questions/16804093/android-studio-rename-package)
+   - Manifest(Android)
+   - Build Configuration
+   - Rename package (`com.oursky.skeleton` to something else).  [Android How-To](https://stackoverflow.com/questions/16804093/android-studio-rename-package).
 5. Add the modules and review changes
 ```
 git add android-java
@@ -62,6 +68,24 @@ git commit -am "refs #1 project setup"
 ```
 git remote add oursky https://github.com/oursky/new-project
 git push -u oursky master
+```
+
+### Backend Setup
+##### First time setup
+```
+> cd backend-nodejs
+> docker-compose up -d
+> make docker-initdb
+```
+##### Shutdown
+```
+> cd backend-nodejs
+> docker-compose down
+```
+##### Start again
+```
+> cd backend-nodejs
+> docker-compose up -d
 ```
 
 ### What's Next
