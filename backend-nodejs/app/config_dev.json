@@ -1,0 +1,14 @@
+{
+    "server" : {
+        "threads" : -1,
+        "port" : 8080
+    },
+	"database": {
+        "connectionLimit" : 2,
+        "host"            : "127.0.0.1",
+        "user"            : "test",
+        "password"        : "1234",
+        "database"        : "testdb",
+        "charset"         : "utf8_general_ci"
+    }
+}
