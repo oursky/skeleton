@@ -1,21 +1,42 @@
 package com.oursky.skeleton.client
 
-import android.support.annotation.Keep
-import com.beust.klaxon.Json
 import com.oursky.skeleton.model.MyLoginSession
+import org.json.JSONException
+import org.json.JSONObject
 
 class Login {
-    @Keep
     data class Input(
-            @Json(name = "email") val email: String,
-            @Json(name = "pass") val pass: String
-    )
-    @Keep
-    data class Output(
-            @Json(ignored = true) var result: Result = Result.Success,
-            @Json(name = "result") var _result: Int = 0,
-            @Json(name = "user") var me: MyLoginSession? = null
+            val email: String,
+            val pass: String
     ) {
-        enum class Result { Success, InvalidAccount, IncorrectPassword, Suspended }
+      @Throws(JSONException::class)
+      fun toJson(): String = JSONObject()
+              .put("email", email)
+              .put("pass", pass)
+              .toString(0)
+    }
+    data class Output(
+            var result: Result = Result.Success,
+            var me: MyLoginSession? = null
+    ) {
+        enum class Result(val code: Int) {
+            Success(0),
+            Suspended(1),
+            InvalidAccount(2),
+            IncorrectPassword(3),
+            ;
+            companion object {
+                fun from(code: Int?): Result? = Result.values().find { it.code == code }
+            }
+        }
+        companion object {
+            @Throws(JSONException::class, NullPointerException::class)
+            fun from(json: JSONObject): Output {
+                return Output(
+                        result = Result.from(json.getInt("result"))!!, // Throw NPE if not resolvable
+                        me = MyLoginSession.from(json.optJSONObject("user"))
+                )
+            }
+        }
     }
 }

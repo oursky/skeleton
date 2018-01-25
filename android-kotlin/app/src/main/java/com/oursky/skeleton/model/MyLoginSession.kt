@@ -1,10 +1,19 @@
 package com.oursky.skeleton.model
 
-import android.support.annotation.Keep
-import com.beust.klaxon.Json
+import org.json.JSONException
+import org.json.JSONObject
 
-@Keep
 data class MyLoginSession(
-        @Json(name = "no") val id: Int,
-        @Json(name = "name") val name: String
-)
+        val id: Int = 0,
+        val name: String = ""
+) {
+    companion object {
+        @Throws(JSONException::class, NullPointerException::class)
+        fun from(json: JSONObject): MyLoginSession {
+            return MyLoginSession(
+                    id = json.getInt("id"),
+                    name = json.getString("name")
+            )
+        }
+    }
+}
