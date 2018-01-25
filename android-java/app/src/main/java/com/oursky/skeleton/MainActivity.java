@@ -26,7 +26,6 @@ import io.reactivex.functions.Function;
 import static com.oursky.skeleton.MainApplication.store;
 
 public class MainActivity extends AppCompatActivity {
-    private static final int SPLASH_DURATION = 2000;
     private boolean mStoreRetained = false;
     private boolean mInSplash;
     private boolean mShowingMain;
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         );
         if (mInSplash) {
             // Show main screen after a delay, can also do things like login to server
-            getWindow().getDecorView().postDelayed(() -> showAppContent(), SPLASH_DURATION);
+            getWindow().getDecorView().postDelayed(() -> showAppContent(), AppConfig.SPLASH_DURATION);
         }
     }
     @Override

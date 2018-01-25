@@ -31,7 +31,7 @@ import static com.oursky.skeleton.helper.ResourceHelper.font;
 
 public class LoginScreen extends BaseController {
     private CompositeDisposable mSubscriptions = new CompositeDisposable();
-    private EditText mName, mPass;
+    private EditText mEmail, mPass;
     private Button mSubmit;
 
     //region Lifecycle
@@ -46,11 +46,11 @@ public class LoginScreen extends BaseController {
         actionbar.setTitle(R.string.login_title);
         contentView.addView(actionbar, LP.linear(LP.MATCH_PARENT, LP.WRAP_CONTENT).build());
 
-        mName = new EditText(context);
-        mName.setTextSize(20);
-        mName.setTypeface(font(R.font.barlow_condensed_regular));
-        mName.setHint(R.string.login_name_hint);
-        contentView.addView(mName, LP.linear(LP.MATCH_PARENT, LP.WRAP_CONTENT).build());
+        mEmail = new EditText(context);
+        mEmail.setTextSize(20);
+        mEmail.setTypeface(font(R.font.barlow_condensed_regular));
+        mEmail.setHint(R.string.login_name_hint);
+        contentView.addView(mEmail, LP.linear(LP.MATCH_PARENT, LP.WRAP_CONTENT).build());
 
         mPass = new EditText(context);
         mPass.setTextSize(20);
@@ -95,9 +95,9 @@ public class LoginScreen extends BaseController {
     //---------------------------------------------------------------
     private final View.OnClickListener onSubmitClick = (view) -> {
         KeyboardHelper.hide(getActivity());
-        final String name = mName.getText().toString();
+        final String email = mEmail.getText().toString();
         final String pass = mPass.getText().toString();
-        final Login.Input input = new Login.Input(name, pass);
+        final Login.Input input = new Login.Input(email, pass);
         if (validateForm(input)) {
             ClientAction.login(store(), input);
         } else {
@@ -114,7 +114,7 @@ public class LoginScreen extends BaseController {
     private final Consumer<ClientState.APIState<Login.Output>> consumeLoginState = (mapped) -> {
         boolean enableUI = !mapped.inprogress;
         mSubmit.setEnabled(enableUI);
-        mName.setEnabled(enableUI);
+        mEmail.setEnabled(enableUI);
         mPass.setEnabled(enableUI);
     };
     //---------------------------------------------------------------
@@ -122,7 +122,7 @@ public class LoginScreen extends BaseController {
 
     //region Form Validation
     private boolean validateForm(@NonNull Login.Input input) {
-        if (input.name.isEmpty()) return false;
+        if (input.email.isEmpty()) return false;
         if (input.pass.isEmpty()) return false;
         return true;
     }

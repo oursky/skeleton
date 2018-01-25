@@ -60,7 +60,7 @@ class MainActivity : AppCompatActivity() {
         )
         if (mInSplash) {
             // Show main screen after a delay, can also do things like login to server
-            window.decorView.postDelayed({ showAppContent() }, AppConfig.SLPASH_DURATION)
+            window.decorView.postDelayed({ showAppContent() }, AppConfig.SPLASH_DURATION)
         }
     }
     override fun onPause() {

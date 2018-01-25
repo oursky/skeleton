@@ -1,15 +1,16 @@
 package com.oursky.skeleton.client
 
 import android.os.Handler
+import com.oursky.skeleton.AppConfig
+import com.oursky.skeleton.helper.Logger
 import java.io.IOException
-import com.beust.klaxon.Klaxon
 import okhttp3.Call
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 import okhttp3.MediaType
-import com.oursky.skeleton.model.MyLoginSession
+import org.json.JSONObject
 
 @Suppress("unused", "PrivatePropertyName", "UNUSED_PARAMETER")
 class WebClient {
@@ -27,7 +28,6 @@ class WebClient {
     //region Client State
     private val JSON = MediaType.parse("application/json; charset=utf-8")
     private val mHttpClient = OkHttpClient()
-    private val mKlaxon = Klaxon()
     private var mAuthToken = ""
     //endregion
 
@@ -72,8 +72,8 @@ class WebClient {
             val req = Request.Builder().url(mUrl)
             when (mType) {
                 RequestType.GET -> { }
-                RequestType.POST -> { req.post(mBody!!) }
-                RequestType.PUT -> { req.post(mBody!!) }
+                RequestType.POST -> { mBody?.let { req.post(it) } }
+                RequestType.PUT -> { mBody?.let { req.put(it) } }
                 RequestType.DELETE -> { req.delete(mBody) }
             }
             // Insert token if needed
@@ -93,29 +93,34 @@ class WebClient {
 
     //region Auth Functions
     fun login(input: Login.Input, cb: (Result, Login.Output?) -> Unit) {
-        mMockHandler.postDelayed({
-            mAuthToken = "1234"
-            val output = Login.Output(
-                    result = Login.Output.Result.Success,
-                    me = MyLoginSession(1, "My Name")
-            )
-            cb.invoke(Result.Success, output)
-        }, MOCK_CALLBACK_DELAY)
-//        ApiBuilder(AppConfig.SERVER_BASE + "login")
-////                .post(FormBody.Builder()
-////                        .add("email", input.email)
-////                        .add("password", input.pass)
-////                        .build())
-//                .post(RequestBody.create(JSON, mKlaxon.toJsonString(input)))
-//                .execute(mHttpClient, { result, isHttpSuccess, body ->
-//                    try {
-//                        if (result != Result.Success || !isHttpSuccess || body == null) throw Exception("HTTP failed")
-//                        val output = mKlaxon.parse<Login.Output>(body)
-//                        cb.invoke(result, output)
-//                    } catch (e: Exception) {
-//                        cb.invoke(result, null)
-//                    }
-//                })
+//        mMockHandler.postDelayed({
+//            mAuthToken = "1234"
+//            val output = Login.Output(
+//                    result = Login.Output.Result.Success,
+//                    me = MyLoginSession(1, "My Name")
+//            )
+//            cb.invoke(Result.Success, output)
+//        }, MOCK_CALLBACK_DELAY)
+        ApiBuilder(AppConfig.SERVER_BASE + "login")
+//                .post(FormBody.Builder()
+//                        .add("email", input.email)
+//                        .add("password", input.pass)
+//                        .build())
+                .post(RequestBody.create(JSON, input.toJson()))
+                .execute(mHttpClient, { result, isHttpSuccess, body ->
+                    var r = result
+                    val output = try {
+                        if (result == Result.Success && isHttpSuccess) {
+                            Login.Output.from(JSONObject(body))
+                        } else null
+                    } catch (e: Exception) {
+                        Logger.e(TAG, "login: $result, $isHttpSuccess, $body - ${e.message}")
+                        r = Result.PayloadError
+                        null
+                    }
+                    Logger.d(TAG, "login: ${output?.result} - $result, $isHttpSuccess, $body")
+                    cb.invoke(r, output)
+                })
     }
     fun logout(cb: (Result) -> Unit) {
         //TODO: Replace this with a real HTTP request
