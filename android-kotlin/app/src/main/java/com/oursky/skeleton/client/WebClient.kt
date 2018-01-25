@@ -10,7 +10,6 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 import okhttp3.MediaType
-import com.oursky.skeleton.model.MyLoginSession
 import org.json.JSONObject
 
 @Suppress("unused", "PrivatePropertyName", "UNUSED_PARAMETER")
@@ -73,8 +72,8 @@ class WebClient {
             val req = Request.Builder().url(mUrl)
             when (mType) {
                 RequestType.GET -> { }
-                RequestType.POST -> { req.post(mBody!!) }
-                RequestType.PUT -> { req.post(mBody!!) }
+                RequestType.POST -> { mBody?.let { req.post(it) } }
+                RequestType.PUT -> { mBody?.let { req.put(it) } }
                 RequestType.DELETE -> { req.delete(mBody) }
             }
             // Insert token if needed

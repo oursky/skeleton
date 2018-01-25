@@ -16,7 +16,7 @@ public class ClientState {
         T data;
         public APIState() {
             inprogress = false;
-            result = WebClient.Result.OK;
+            result = WebClient.Result.Success;
             data = null;
         }
         @Keep

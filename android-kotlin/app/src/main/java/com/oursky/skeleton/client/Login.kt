@@ -9,15 +9,18 @@ class Login {
             val email: String,
             val pass: String
     ) {
-      @Throws(JSONException::class)
-      fun toJson(): String = JSONObject()
-              .put("email", email)
-              .put("pass", pass)
-              .toString(0)
+        fun toJson(): String = try {
+            JSONObject()
+                    .put("email", email)
+                    .put("pass", pass)
+                    .toString(0)
+        } catch (e: JSONException) {
+            ""
+        }
     }
     data class Output(
-            var result: Result = Result.Success,
-            var me: MyLoginSession? = null
+            var result: Result,
+            var me: MyLoginSession
     ) {
         enum class Result(val code: Int) {
             Success(0),
@@ -34,7 +37,7 @@ class Login {
             fun from(json: JSONObject): Output {
                 return Output(
                         result = Result.from(json.getInt("result"))!!, // Throw NPE if not resolvable
-                        me = MyLoginSession.from(json.optJSONObject("user"))
+                        me = MyLoginSession.from(json.getJSONObject("user"))
                 )
             }
         }
