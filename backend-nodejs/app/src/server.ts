@@ -7,7 +7,7 @@ import * as path from "path";
 class AppServer {
     private app: express.Application;
 
-    constructor() {
+    constructor(id: number, config: any) {
         this.app = express()
                     .use(bodyParser.json())
                     ;
