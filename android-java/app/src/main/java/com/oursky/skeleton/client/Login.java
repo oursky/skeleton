@@ -3,6 +3,7 @@ package com.oursky.skeleton.client;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.oursky.skeleton.iface.SerializableToJson;
 import com.oursky.skeleton.model.MyLoginSession;
 
 import org.json.JSONException;
@@ -10,22 +11,19 @@ import org.json.JSONObject;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class Login {
-    public static class Input {
+    public static class Input implements SerializableToJson {
         public final @NonNull String email;
         public final @NonNull String pass;
         public Input(@NonNull String email, @NonNull String pass) {
             this.email = email;
             this.pass = pass;
         }
-        public @NonNull String toJson() {
-            try {
-                return new JSONObject()
-                        .put("email", email)
-                        .put("pass", pass)
-                        .toString(0);
-            } catch (JSONException e) {
-                return "";
-            }
+        @Override
+        public @NonNull String toJson() throws JSONException {
+            return new JSONObject()
+                    .put("email", email)
+                    .put("pass", pass)
+                    .toString(0);
         }
     }
     public static class Output {

@@ -3,6 +3,8 @@ package com.oursky.skeleton.client;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.IOException;
 
@@ -16,6 +18,7 @@ import okhttp3.ResponseBody;
 
 import com.oursky.skeleton.AppConfig;
 import com.oursky.skeleton.helper.Logger;
+import com.oursky.skeleton.iface.SerializableToJson;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class WebClient {
@@ -30,7 +33,6 @@ public class WebClient {
     //endregion
 
     //region Client State
-    private MediaType JSON = MediaType.parse("application/json; charset=utf-8");
     private @NonNull OkHttpClient mHttpClient= new OkHttpClient();
     private @NonNull String mAuthToken = "";
     //endregion
@@ -54,6 +56,7 @@ public class WebClient {
     }
     private static class ApiBuilder {
         private enum RequestType { GET, POST, PUT, DELETE }
+        private MediaType JSON = MediaType.parse("application/json; charset=utf-8");
         private @NonNull String mUrl;
         private @NonNull RequestType mType;
         private @Nullable RequestBody mBody;
@@ -75,6 +78,30 @@ public class WebClient {
         ApiBuilder delete(@Nullable RequestBody body) {
             mType = RequestType.DELETE;
             mBody = body;
+            return this;
+        }
+        ApiBuilder post(@NonNull SerializableToJson data) {
+            try {
+                post(RequestBody.create(JSON, data.toJson()));
+            } catch (JSONException e) {
+                Logger.e("WebClient", "Json Exception on input: " + e.getMessage());
+            }
+            return this;
+        }
+        ApiBuilder put(@NonNull SerializableToJson data) {
+            try {
+                put(RequestBody.create(JSON, data.toJson()));
+            } catch (JSONException e) {
+                Logger.e("WebClient", "Json Exception on input: " + e.getMessage());
+            }
+            return this;
+        }
+        ApiBuilder delete(@NonNull SerializableToJson data) {
+            try {
+                delete(RequestBody.create(JSON, data.toJson()));
+            } catch (JSONException e) {
+                Logger.e("WebClient", "Json Exception on input: " + e.getMessage());
+            }
             return this;
         }
         void execute(OkHttpClient http, @Nullable ApiCallback cb) {
@@ -118,7 +145,7 @@ public class WebClient {
 //                        .add("email", input.email)
 //                        .add("password", input.pass)
 //                        .build())
-                .post(RequestBody.create(JSON, input.toJson()))
+                .post(input)
                 .execute(mHttpClient, (result, isHttpSuccess, body) -> {
                     Login.Output output = null;
                     try {

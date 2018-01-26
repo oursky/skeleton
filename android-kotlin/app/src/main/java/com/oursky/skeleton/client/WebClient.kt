@@ -3,6 +3,7 @@ package com.oursky.skeleton.client
 import android.os.Handler
 import com.oursky.skeleton.AppConfig
 import com.oursky.skeleton.helper.Logger
+import com.oursky.skeleton.iface.SerializableToJson
 import java.io.IOException
 import okhttp3.Call
 import okhttp3.OkHttpClient
@@ -10,9 +11,10 @@ import okhttp3.Request
 import okhttp3.RequestBody
 import okhttp3.Response
 import okhttp3.MediaType
+import org.json.JSONException
 import org.json.JSONObject
 
-@Suppress("unused", "PrivatePropertyName", "UNUSED_PARAMETER")
+@Suppress("unused", "PrivatePropertyName", "UNUSED_PARAMETER", "MemberVisibilityCanBePrivate")
 class WebClient {
     private val TAG = "WebClient"
 
@@ -26,7 +28,6 @@ class WebClient {
     //endregion
 
     //region Client State
-    private val JSON = MediaType.parse("application/json; charset=utf-8")
     private val mHttpClient = OkHttpClient()
     private var mAuthToken = ""
     //endregion
@@ -45,6 +46,7 @@ class WebClient {
     //region ApiBuilder
     class ApiBuilder internal constructor(url: String) {
         private enum class RequestType { GET, POST, PUT, DELETE }
+        private val JSON = MediaType.parse("application/json; charset=utf-8")
         private val mUrl = url
         private var mType = RequestType.GET
         private var mBody: RequestBody? = null
@@ -62,6 +64,30 @@ class WebClient {
         fun delete(body: RequestBody?): ApiBuilder {
             mType = RequestType.DELETE
             mBody = body
+            return this
+        }
+        fun post(data: SerializableToJson): ApiBuilder {
+            try {
+                post(RequestBody.create(JSON, data.toJson()))
+            } catch (e: JSONException) {
+                Logger.e("WebClient", "Json Exception on input: ${e.message}")
+            }
+            return this
+        }
+        fun put(data: SerializableToJson): ApiBuilder {
+            try {
+                post(RequestBody.create(JSON, data.toJson()))
+            } catch (e: JSONException) {
+                Logger.e("WebClient", "Json Exception on input: ${e.message}")
+            }
+            return this
+        }
+        fun delete(data: SerializableToJson): ApiBuilder {
+            try {
+                delete(RequestBody.create(JSON, data.toJson()))
+            } catch (e: JSONException) {
+                Logger.e("WebClient", "Json Exception on input: ${e.message}")
+            }
             return this
         }
         fun token(token: String): ApiBuilder {
@@ -106,7 +132,7 @@ class WebClient {
 //                        .add("email", input.email)
 //                        .add("password", input.pass)
 //                        .build())
-                .post(RequestBody.create(JSON, input.toJson()))
+                .post(input)
                 .execute(mHttpClient, { result, isHttpSuccess, body ->
                     var r = result
                     val output = try {
