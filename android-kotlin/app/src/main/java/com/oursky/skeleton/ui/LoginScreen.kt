@@ -87,7 +87,7 @@ class LoginScreen : BaseController() {
     //region UI Events
     //---------------------------------------------------------------
     private val onSubmitClick = View.OnClickListener { _: View ->
-        KeyboardHelper.hide(activity!!)
+        KeyboardHelper.hide(activity)
         val email = mEamil?.text.toString()
         val pass = mPass?.text.toString()
         val input = Login.Input(email, pass)

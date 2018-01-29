@@ -57,11 +57,11 @@ abstract class BaseBottomPopup : FrameLayout {
     public override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         raii()
-        onAttach(mContentView!!)
+        mContentView?.let { onAttach(it) }
     }
     public override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        onDetach(mContentView!!)
+        mContentView?.let { onDetach(it) }
     }
     //---------------------------------------------------------------
     //endregion
@@ -72,17 +72,19 @@ abstract class BaseBottomPopup : FrameLayout {
         return mInTransition || super.onInterceptTouchEvent(ev)
     }
     fun show(visible: Boolean) {
+        val bg = mDimBackground ?: return
+        val content = mContentView ?: return
         if (mInTransition || isVisible == visible) return
         if (mDimBackground == null || mContentView == null) return
         isVisible = visible
         if (isVisible) {
             mInTransition = true
-            ViewTransition.fadeIn(mDimBackground!!, ANIMATION_DURATION) { mInTransition = false }
-            ViewTransition.slideIn(mContentView!!, ViewTransition.Direction.UP, mContentView!!.height, ANIMATION_DURATION, null)
+            ViewTransition.fadeIn(bg, ANIMATION_DURATION) { mInTransition = false }
+            ViewTransition.slideIn(content, ViewTransition.Direction.UP, content.height, ANIMATION_DURATION, null)
         } else {
             mInTransition = true
-            ViewTransition.fadeOut(mDimBackground!!, ANIMATION_DURATION) { mInTransition = false }
-            ViewTransition.slideOut(mContentView!!, ViewTransition.Direction.DOWN, mContentView!!.height, ANIMATION_DURATION, null)
+            ViewTransition.fadeOut(bg, ANIMATION_DURATION) { mInTransition = false }
+            ViewTransition.slideOut(content, ViewTransition.Direction.DOWN, content.height, ANIMATION_DURATION, null)
         }
     }
     //---------------------------------------------------------------

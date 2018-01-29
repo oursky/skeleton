@@ -18,16 +18,16 @@ object ResourceHelper {
         context = WeakReference(c)
     }
     fun dp(value: Float): Int {
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, context?.get()!!.resources.displayMetrics))
+        val c = context?.get() ?: return 0
+        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value, c.resources.displayMetrics))
     }
-    fun dp(value: Int): Int {
-        return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, value.toFloat(), context?.get()!!.resources.displayMetrics))
-    }
+    fun dp(value: Int): Int = dp(value.toFloat())
     fun dimen(@DimenRes resId: Int): Int {
-        return context?.get()!!.resources.getDimensionPixelOffset(resId)
+        return context?.get()?.resources?.getDimensionPixelOffset(resId) ?: 0
     }
     fun color(@ColorRes resId: Int): Int {
-        return ContextCompat.getColor(context?.get()!!, resId)
+        val c = context?.get() ?: return 0
+        return ContextCompat.getColor(c, resId)
     }
 
     private var sFontCache: SparseArray<Typeface> = SparseArray()

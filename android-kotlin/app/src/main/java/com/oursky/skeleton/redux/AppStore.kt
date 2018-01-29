@@ -34,8 +34,8 @@ class AppStore {
             override fun subscribe(emitter: ObservableEmitter<S>) {
                 mSubscribe = store.subscribe({ emitter.onNext(store.state) })
                 emitter.setCancellable {
-                    if (mSubscribe != null) {
-                        mSubscribe!!.unsubscribe()
+                    mSubscribe?.let {
+                        it.unsubscribe()
                         mSubscribe = null
                     }
                 }
