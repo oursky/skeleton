@@ -19,11 +19,10 @@ public class Login {
             this.pass = pass;
         }
         @Override
-        public @NonNull String toJson() throws JSONException {
+        public @NonNull JSONObject toJson() throws JSONException {
             return new JSONObject()
                     .put("email", email)
-                    .put("pass", pass)
-                    .toString(0);
+                    .put("pass", pass);
         }
     }
     public static class Output {

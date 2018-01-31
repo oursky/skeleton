@@ -19,10 +19,9 @@ public class MyLoginSession implements SerializableToJson {
     }
 
     @Override
-    public String toJson() throws JSONException {
+    public @NonNull JSONObject toJson() throws JSONException {
         return new JSONObject()
-                .put("name", name)
-                .toString(0);
+                .put("name", name);
     }
     public static @NonNull MyLoginSession from(@NonNull JSONObject json) throws JSONException, NullPointerException {
         return new MyLoginSession(

@@ -1,7 +1,9 @@
 package com.oursky.skeleton.iface;
 
+import android.support.annotation.NonNull;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public interface SerializableToJson {
-    String toJson() throws JSONException;
+    @NonNull JSONObject toJson() throws JSONException;
 }

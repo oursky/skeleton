@@ -1,11 +1,11 @@
 package com.oursky.skeleton.redux
 
+import redux.api.Reducer
+import redux.api.Store
 import com.oursky.skeleton.client.Login
 import com.oursky.skeleton.client.WebClient
 import com.oursky.skeleton.client.WebClient.Companion.client
 import com.oursky.skeleton.model.MyLoginSession
-import redux.api.Reducer
-import redux.api.Store
 
 @Suppress("unused")
 class ClientStore {

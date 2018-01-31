@@ -6,17 +6,17 @@ import android.widget.FrameLayout
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Consumer
+import io.reactivex.functions.Function
 import com.facebook.drawee.backends.pipeline.Fresco
-import com.oursky.skeleton.MainApplication.Companion.store
 import com.oursky.skeleton.redux.ClientStore
 import com.oursky.skeleton.redux.ViewStore
 import com.oursky.skeleton.ui.LoginScreen
 import com.oursky.skeleton.ui.MainScreen
 import com.oursky.skeleton.ui.SplashScreen
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Consumer
-import io.reactivex.functions.Function
+import com.oursky.skeleton.MainApplication.Companion.store
 
 class MainActivity : AppCompatActivity() {
     private val mSubscriptions = CompositeDisposable()

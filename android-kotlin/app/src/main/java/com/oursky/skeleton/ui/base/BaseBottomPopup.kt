@@ -6,11 +6,9 @@ import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
 import android.widget.FrameLayout
-
 import com.oursky.skeleton.R
 import com.oursky.skeleton.helper.LP
 import com.oursky.skeleton.helper.ViewTransition
-
 import com.oursky.skeleton.helper.ResourceHelper.color
 
 @Suppress("unused", "PrivatePropertyName")

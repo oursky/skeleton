@@ -1,9 +1,9 @@
 package com.oursky.skeleton.client
 
-import com.oursky.skeleton.iface.SerializableToJson
-import com.oursky.skeleton.model.MyLoginSession
 import org.json.JSONException
 import org.json.JSONObject
+import com.oursky.skeleton.iface.SerializableToJson
+import com.oursky.skeleton.model.MyLoginSession
 
 class Login {
     data class Input(
@@ -11,14 +11,9 @@ class Login {
             val pass: String
     ) : SerializableToJson {
         @Throws(JSONException::class)
-        override fun toJson(): String = try {
-            JSONObject()
-                    .put("email", email)
-                    .put("pass", pass)
-                    .toString(0)
-        } catch (e: JSONException) {
-            ""
-        }
+        override fun toJson(): JSONObject = JSONObject()
+                .put("email", email)
+                .put("pass", pass)
     }
     data class Output(
             var result: Result,

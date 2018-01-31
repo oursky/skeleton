@@ -1,9 +1,6 @@
 package com.oursky.skeleton.client
 
 import android.os.Handler
-import com.oursky.skeleton.AppConfig
-import com.oursky.skeleton.helper.Logger
-import com.oursky.skeleton.iface.SerializableToJson
 import java.io.IOException
 import okhttp3.Call
 import okhttp3.OkHttpClient
@@ -13,6 +10,9 @@ import okhttp3.Response
 import okhttp3.MediaType
 import org.json.JSONException
 import org.json.JSONObject
+import com.oursky.skeleton.AppConfig
+import com.oursky.skeleton.helper.Logger
+import com.oursky.skeleton.iface.SerializableToJson
 
 @Suppress("unused", "PrivatePropertyName", "UNUSED_PARAMETER", "MemberVisibilityCanBePrivate")
 class WebClient {
@@ -68,7 +68,7 @@ class WebClient {
         }
         fun post(data: SerializableToJson): ApiBuilder {
             try {
-                post(RequestBody.create(JSON, data.toJson()))
+                post(RequestBody.create(JSON, data.toJson().toString(0)))
             } catch (e: JSONException) {
                 Logger.e("WebClient", "Json Exception on input: ${e.message}")
             }
@@ -76,7 +76,7 @@ class WebClient {
         }
         fun put(data: SerializableToJson): ApiBuilder {
             try {
-                post(RequestBody.create(JSON, data.toJson()))
+                post(RequestBody.create(JSON, data.toJson().toString(0)))
             } catch (e: JSONException) {
                 Logger.e("WebClient", "Json Exception on input: ${e.message}")
             }
@@ -84,7 +84,7 @@ class WebClient {
         }
         fun delete(data: SerializableToJson): ApiBuilder {
             try {
-                delete(RequestBody.create(JSON, data.toJson()))
+                delete(RequestBody.create(JSON, data.toJson().toString(0)))
             } catch (e: JSONException) {
                 Logger.e("WebClient", "Json Exception on input: ${e.message}")
             }
@@ -94,7 +94,7 @@ class WebClient {
             mToken = token
             return this
         }
-        fun execute(http: OkHttpClient, cb: ((Result, Boolean, String?) -> Unit)?) {
+        fun execute(http: OkHttpClient, cb: ((Result, Response?, String?) -> Unit)?) {
             val req = Request.Builder().url(mUrl)
             when (mType) {
                 RequestType.GET -> { }
@@ -106,11 +106,11 @@ class WebClient {
             mToken?.let { req.addHeader("Authorization", "Bearer " + it) }
             http.newCall(req.build()).enqueue(object : okhttp3.Callback {
                 override fun onFailure(call: Call, e: IOException) {
-                    cb?.invoke(Result.ServerUnreachable, false, null)
+                    cb?.invoke(Result.ServerUnreachable, null, null)
                 }
                 @Throws(IOException::class)
                 override fun onResponse(call: Call, response: Response) {
-                    cb?.invoke(Result.Success, response.isSuccessful, response.body()?.string())
+                    cb?.invoke(Result.Success, response, response.body()?.string())
                 }
             })
         }
@@ -133,18 +133,18 @@ class WebClient {
 //                        .add("password", input.pass)
 //                        .build())
                 .post(input)
-                .execute(mHttpClient, { result, isHttpSuccess, body ->
+                .execute(mHttpClient, { result, response, body ->
                     var r = result
                     val output = try {
-                        if (result == Result.Success && isHttpSuccess) {
+                        if (result == Result.Success && (response?.isSuccessful == true)) {
                             Login.Output.from(JSONObject(body))
                         } else null
                     } catch (e: Exception) {
-                        Logger.e(TAG, "login: $result, $isHttpSuccess, $body - ${e.message}")
+                        Logger.e(TAG, "login: $result, $body - ${e.message}")
                         r = Result.PayloadError
                         null
                     }
-                    Logger.d(TAG, "login: ${output?.result} - $result, $isHttpSuccess, $body")
+                    Logger.d(TAG, "login: ${output?.result} - $result, $body")
                     cb.invoke(r, output)
                 })
     }

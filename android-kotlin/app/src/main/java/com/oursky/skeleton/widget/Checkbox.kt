@@ -14,10 +14,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-
 import com.oursky.skeleton.helper.LP
 import com.oursky.skeleton.helper.Touchable
-
 import com.oursky.skeleton.helper.ResourceHelper.dp
 
 @Suppress("unused", "UNUSED_PARAMETER")
