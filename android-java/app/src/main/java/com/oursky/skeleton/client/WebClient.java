@@ -20,7 +20,7 @@ import com.oursky.skeleton.AppConfig;
 import com.oursky.skeleton.helper.Logger;
 import com.oursky.skeleton.iface.SerializableToJson;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "UnusedReturnValue"})
 public class WebClient {
     private static final String TAG = "WebClient";
     //region Singleton
@@ -52,7 +52,7 @@ public class WebClient {
 
     //region ApiBuilder
     private interface ApiCallback {
-        void onComplete(@NonNull Result result, boolean isHttpSuccess, @Nullable String body);
+        void onComplete(@NonNull Result result, @Nullable Response response, @Nullable String body);
     }
     private static class ApiBuilder {
         private enum RequestType { GET, POST, PUT, DELETE }
@@ -82,7 +82,7 @@ public class WebClient {
         }
         ApiBuilder post(@NonNull SerializableToJson data) {
             try {
-                post(RequestBody.create(JSON, data.toJson()));
+                post(RequestBody.create(JSON, data.toJson().toString(0)));
             } catch (JSONException e) {
                 Logger.e("WebClient", "Json Exception on input: " + e.getMessage());
             }
@@ -90,7 +90,7 @@ public class WebClient {
         }
         ApiBuilder put(@NonNull SerializableToJson data) {
             try {
-                put(RequestBody.create(JSON, data.toJson()));
+                put(RequestBody.create(JSON, data.toJson().toString(0)));
             } catch (JSONException e) {
                 Logger.e("WebClient", "Json Exception on input: " + e.getMessage());
             }
@@ -98,7 +98,7 @@ public class WebClient {
         }
         ApiBuilder delete(@NonNull SerializableToJson data) {
             try {
-                delete(RequestBody.create(JSON, data.toJson()));
+                delete(RequestBody.create(JSON, data.toJson().toString(0)));
             } catch (JSONException e) {
                 Logger.e("WebClient", "Json Exception on input: " + e.getMessage());
             }
@@ -119,13 +119,13 @@ public class WebClient {
             http.newCall(req.build()).enqueue(new okhttp3.Callback() {
                 @Override
                 public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                    if (cb != null) cb.onComplete(Result.ServerUnreachable, false, null);
+                    if (cb != null) cb.onComplete(Result.ServerUnreachable, null, null);
                 }
                 @Override
                 public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
                     final ResponseBody body = response.body();
                     final String bodystr = body!=null ? body.string() : null;
-                    if (cb != null) cb.onComplete(Result.Success, response.isSuccessful(), bodystr);
+                    if (cb != null) cb.onComplete(Result.Success, response, bodystr);
                 }
             });
         }
@@ -146,14 +146,14 @@ public class WebClient {
 //                        .add("password", input.pass)
 //                        .build())
                 .post(input)
-                .execute(mHttpClient, (result, isHttpSuccess, body) -> {
+                .execute(mHttpClient, (result, response, body) -> {
                     Login.Output output = null;
                     try {
-                        if (result == Result.Success && isHttpSuccess) {
+                        if (result == Result.Success && response!=null && response.isSuccessful()) {
                             output = Login.Output.from(new JSONObject(body));
                         }
                     } catch (Exception e) {
-                        Logger.e(TAG, "login: " + result + ", " + isHttpSuccess + ", " + body + " - " + e.getMessage());
+                        Logger.e(TAG, "login: " + result + ", " + body + " - " + e.getMessage());
                         result = Result.PayloadError;
                     }
                     Logger.d(TAG, "login: " + (output!=null?output.result:"failed") + ", " + body);

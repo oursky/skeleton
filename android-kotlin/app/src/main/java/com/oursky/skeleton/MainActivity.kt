@@ -6,18 +6,19 @@ import android.widget.FrameLayout
 import com.bluelinelabs.conductor.Conductor
 import com.bluelinelabs.conductor.Router
 import com.bluelinelabs.conductor.RouterTransaction
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.functions.Consumer
+import io.reactivex.functions.Function
 import com.facebook.drawee.backends.pipeline.Fresco
-import com.oursky.skeleton.MainApplication.Companion.store
 import com.oursky.skeleton.redux.ClientStore
 import com.oursky.skeleton.redux.ViewStore
 import com.oursky.skeleton.ui.LoginScreen
 import com.oursky.skeleton.ui.MainScreen
 import com.oursky.skeleton.ui.SplashScreen
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.functions.Consumer
-import io.reactivex.functions.Function
+import com.oursky.skeleton.MainApplication.Companion.store
 
+@Suppress("ConstantConditionIf")
 class MainActivity : AppCompatActivity() {
     private val mSubscriptions = CompositeDisposable()
     private var mRouter: Router? = null
@@ -37,9 +38,13 @@ class MainActivity : AppCompatActivity() {
         val layout = FrameLayout(this)
         setContentView(layout)
         mRouter = Conductor.attachRouter(this, layout, savedInstanceState)
-        mRouter?.setRoot(RouterTransaction.with(SplashScreen()))
         mInSplash = true
         mShowingMain = false
+        if (AppConfig.SPLASH_DURATION == 0L) {
+            showAppContent()
+        } else {
+            mRouter?.setRoot(RouterTransaction.with(SplashScreen()))
+        }
     }
     override fun onStart() {
         // NOTE: We need to get store ready before super.onStart(),
@@ -59,9 +64,10 @@ class MainActivity : AppCompatActivity() {
                 .subscribe(consumeLoginState)
         )
         if (mInSplash) {
-            // Show main screen after a delay, can also do things like login to server
+            // Show main screen after a delay
             window.decorView.postDelayed({ showAppContent() }, AppConfig.SPLASH_DURATION)
         }
+        // TODO: resume login session here
     }
     override fun onPause() {
         super.onPause()

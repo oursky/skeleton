@@ -12,14 +12,13 @@ import io.reactivex.functions.Function
 
 import com.oursky.skeleton.R
 import com.oursky.skeleton.helper.LP
-import com.oursky.skeleton.ui.base.BaseController
-import com.oursky.skeleton.widget.ActionBar
-import com.oursky.skeleton.widget.Button
 import com.oursky.skeleton.helper.ResourceHelper.color
 import com.oursky.skeleton.helper.ResourceHelper.dp
 import com.oursky.skeleton.helper.ResourceHelper.font
 import com.oursky.skeleton.redux.ViewStore
-
+import com.oursky.skeleton.widget.ActionBar
+import com.oursky.skeleton.widget.Button
+import com.oursky.skeleton.ui.base.BaseController
 import com.oursky.skeleton.MainApplication.Companion.store
 
 class SecondScreen : BaseController() {

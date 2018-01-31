@@ -9,10 +9,8 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
-
 import com.oursky.skeleton.R
 import com.oursky.skeleton.helper.LP
-
 import com.oursky.skeleton.helper.ResourceHelper.dimen
 import com.oursky.skeleton.helper.ResourceHelper.dp
 import com.oursky.skeleton.helper.ResourceHelper.font

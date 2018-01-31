@@ -25,6 +25,7 @@ import io.reactivex.functions.Function;
 
 import static com.oursky.skeleton.MainApplication.store;
 
+@SuppressWarnings({"ConstantConditions", "Convert2MethodRef"})
 public class MainActivity extends AppCompatActivity {
     private boolean mStoreRetained = false;
     private boolean mInSplash;
@@ -45,9 +46,13 @@ public class MainActivity extends AppCompatActivity {
         FrameLayout layout = new FrameLayout(this);
         setContentView(layout);
         mRouter = Conductor.attachRouter(this, layout, savedInstanceState);
-        mRouter.setRoot(RouterTransaction.with(new SplashScreen()));
         mInSplash = true;
         mShowingMain = false;
+        if (AppConfig.SPLASH_DURATION == 0) {
+            showAppContent();
+        } else {
+            mRouter.setRoot(RouterTransaction.with(new SplashScreen()));
+        }
     }
     @Override
     protected void onStart() {

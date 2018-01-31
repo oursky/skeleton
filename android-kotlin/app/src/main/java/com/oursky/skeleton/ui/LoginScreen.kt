@@ -5,25 +5,22 @@ import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Toast
-
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.functions.Consumer
 import io.reactivex.functions.Function
-
 import com.oursky.skeleton.R
+import com.oursky.skeleton.helper.KeyboardHelper
 import com.oursky.skeleton.helper.LP
 import com.oursky.skeleton.helper.ResourceHelper.color
 import com.oursky.skeleton.helper.ResourceHelper.dp
 import com.oursky.skeleton.helper.ResourceHelper.font
-import com.oursky.skeleton.ui.base.BaseController
-import com.oursky.skeleton.widget.Button
-
-import com.oursky.skeleton.MainApplication.Companion.store
-import com.oursky.skeleton.client.Login
-import com.oursky.skeleton.helper.KeyboardHelper
 import com.oursky.skeleton.redux.ClientStore
+import com.oursky.skeleton.client.Login
 import com.oursky.skeleton.widget.ActionBar
+import com.oursky.skeleton.widget.Button
+import com.oursky.skeleton.ui.base.BaseController
+import com.oursky.skeleton.MainApplication.Companion.store
 
 class LoginScreen : BaseController() {
     private val mSubscriptions = CompositeDisposable()
