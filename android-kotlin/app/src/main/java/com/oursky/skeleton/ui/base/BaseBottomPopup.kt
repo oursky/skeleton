@@ -18,11 +18,12 @@ abstract class BaseBottomPopup : FrameLayout {
     protected abstract fun onAttach(view: View)
     protected abstract fun onDetach(view: View)
 
+    var isVisible: Boolean = false
+        private set
+
     private val ANIMATION_DURATION = 250
     private var mDimBackground: View? = null
     private var mContentView: View? = null
-    var isVisible: Boolean = false
-        private set
     private var mInTransition: Boolean = false
 
     //region Lifecycle
@@ -45,19 +46,19 @@ abstract class BaseBottomPopup : FrameLayout {
         mContentView = onCreateView(context)
         mContentView?.visibility = View.INVISIBLE
         addView(mDimBackground, LP.frame(LP.MATCH_PARENT, LP.MATCH_PARENT).build())
-        addView(mContentView, LP.frame(LP.MATCH_PARENT, LP.WRAP_CONTENT, Gravity.BOTTOM).build())
+        addView(mContentView, LP.frame(LP.WRAP_CONTENT, LP.WRAP_CONTENT, Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL).build())
     }
     //---------------------------------------------------------------
     //endregion
 
     //region Attach / Detach
     //---------------------------------------------------------------
-    public override fun onAttachedToWindow() {
+    final override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         raii()
         mContentView?.let { onAttach(it) }
     }
-    public override fun onDetachedFromWindow() {
+    final override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         mContentView?.let { onDetach(it) }
     }

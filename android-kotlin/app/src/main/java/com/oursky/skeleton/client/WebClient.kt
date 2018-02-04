@@ -9,10 +9,9 @@ import okhttp3.RequestBody
 import okhttp3.Response
 import okhttp3.MediaType
 import org.json.JSONException
-import org.json.JSONObject
-import com.oursky.skeleton.AppConfig
 import com.oursky.skeleton.helper.Logger
 import com.oursky.skeleton.iface.SerializableToJson
+import com.oursky.skeleton.model.MyLoginSession
 
 @Suppress("unused", "PrivatePropertyName", "UNUSED_PARAMETER", "MemberVisibilityCanBePrivate")
 class WebClient {
@@ -119,34 +118,34 @@ class WebClient {
 
     //region Auth Functions
     fun login(input: Login.Input, cb: (Result, Login.Output?) -> Unit) {
-//        mMockHandler.postDelayed({
-//            mAuthToken = "1234"
-//            val output = Login.Output(
-//                    result = Login.Output.Result.Success,
-//                    me = MyLoginSession(1, "My Name")
-//            )
-//            cb.invoke(Result.Success, output)
-//        }, MOCK_CALLBACK_DELAY)
-        ApiBuilder(AppConfig.SERVER_BASE + "login")
-//                .post(FormBody.Builder()
-//                        .add("email", input.email)
-//                        .add("password", input.pass)
-//                        .build())
-                .post(input)
-                .execute(mHttpClient, { result, response, body ->
-                    var r = result
-                    val output = try {
-                        if (result == Result.Success && (response?.isSuccessful == true)) {
-                            Login.Output.from(JSONObject(body))
-                        } else null
-                    } catch (e: Exception) {
-                        Logger.e(TAG, "login: $result, $body - ${e.message}")
-                        r = Result.PayloadError
-                        null
-                    }
-                    Logger.d(TAG, "login: ${output?.result} - $result, $body")
-                    cb.invoke(r, output)
-                })
+        mMockHandler.postDelayed({
+            mAuthToken = "1234"
+            val output = Login.Output(
+                    result = Login.Output.Result.Success,
+                    me = MyLoginSession(1, "My Name")
+            )
+            cb.invoke(Result.Success, output)
+        }, MOCK_CALLBACK_DELAY)
+//        ApiBuilder(AppConfig.SERVER_BASE + "login")
+////                .post(FormBody.Builder()
+////                        .add("email", input.email)
+////                        .add("password", input.pass)
+////                        .build())
+//                .post(input)
+//                .execute(mHttpClient, { result, response, body ->
+//                    var r = result
+//                    val output = try {
+//                        if (result == Result.Success && (response?.isSuccessful == true)) {
+//                            Login.Output.from(JSONObject(body))
+//                        } else null
+//                    } catch (e: Exception) {
+//                        Logger.e(TAG, "login: $result, $body - ${e.message}")
+//                        r = Result.PayloadError
+//                        null
+//                    }
+//                    Logger.d(TAG, "login: ${output?.result} - $result, $body")
+//                    cb.invoke(r, output)
+//                })
     }
     fun logout(cb: (Result) -> Unit) {
         //TODO: Replace this with a real HTTP request

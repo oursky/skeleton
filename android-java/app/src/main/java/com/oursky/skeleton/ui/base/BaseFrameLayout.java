@@ -29,12 +29,12 @@ public abstract class BaseFrameLayout extends FrameLayout {
     //region Attach / Detach
     //---------------------------------------------------------------
     @Override
-    public void onAttachedToWindow() {
+    final public void onAttachedToWindow() {
         super.onAttachedToWindow();
         onAttach(this);
     }
     @Override
-    public void onDetachedFromWindow() {
+    final public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         onDetach(this);
     }

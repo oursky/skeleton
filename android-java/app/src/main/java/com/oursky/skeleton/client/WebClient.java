@@ -3,11 +3,8 @@ package com.oursky.skeleton.client;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 import java.io.IOException;
-
+import org.json.JSONException;
 import okhttp3.Call;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -15,10 +12,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-
-import com.oursky.skeleton.AppConfig;
 import com.oursky.skeleton.helper.Logger;
 import com.oursky.skeleton.iface.SerializableToJson;
+import com.oursky.skeleton.model.MyLoginSession;
 
 @SuppressWarnings({"WeakerAccess", "unused", "UnusedReturnValue"})
 public class WebClient {
@@ -133,32 +129,33 @@ public class WebClient {
 
     //region Auth Functions
     public void login(@NonNull Login.Input input, @NonNull Callback<Login.Output> cb) {
-//        mMockHandler.postDelayed(() -> {
-//            mAuthToken = "1234";
-//            Login.Output output = new Login.Output();
-//            output.result = Login.Output.Result.Success;
-//            output.me = new MyLoginSession("My Name");
-//            cb.onComplete(Result.OK, output);
-//        }, MOCK_CALLBACK_DELAY);
-        new ApiBuilder(AppConfig.SERVER_BASE + "login")
-//                .post(FormBody.Builder()
-//                        .add("email", input.email)
-//                        .add("password", input.pass)
-//                        .build())
-                .post(input)
-                .execute(mHttpClient, (result, response, body) -> {
-                    Login.Output output = null;
-                    try {
-                        if (result == Result.Success && response!=null && response.isSuccessful()) {
-                            output = Login.Output.from(new JSONObject(body));
-                        }
-                    } catch (Exception e) {
-                        Logger.e(TAG, "login: " + result + ", " + body + " - " + e.getMessage());
-                        result = Result.PayloadError;
-                    }
-                    Logger.d(TAG, "login: " + (output!=null?output.result:"failed") + ", " + body);
-                    cb.onComplete(result, output);
-                });
+        mMockHandler.postDelayed(() -> {
+            mAuthToken = "1234";
+            Login.Output output = new Login.Output(
+                    Login.Output.Result.Success,
+                    new MyLoginSession("My Name")
+            );
+            cb.onComplete(Result.Success, output);
+        }, MOCK_CALLBACK_DELAY);
+//        new ApiBuilder(AppConfig.SERVER_BASE + "login")
+////                .post(FormBody.Builder()
+////                        .add("email", input.email)
+////                        .add("password", input.pass)
+////                        .build())
+//                .post(input)
+//                .execute(mHttpClient, (result, response, body) -> {
+//                    Login.Output output = null;
+//                    try {
+//                        if (result == Result.Success && response!=null && response.isSuccessful()) {
+//                            output = Login.Output.from(new JSONObject(body));
+//                        }
+//                    } catch (Exception e) {
+//                        Logger.e(TAG, "login: " + result + ", " + body + " - " + e.getMessage());
+//                        result = Result.PayloadError;
+//                    }
+//                    Logger.d(TAG, "login: " + (output!=null?output.result:"failed") + ", " + body);
+//                    cb.onComplete(result, output);
+//                });
     }
     public void logout(@NonNull Callback<Void> cb) {
         //TODO: Replace this with a real HTTP request

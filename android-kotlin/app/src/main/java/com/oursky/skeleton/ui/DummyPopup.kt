@@ -24,17 +24,17 @@ class DummyPopup : BaseBottomPopup {
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle)
     override fun onCreateView(context: Context): View {
-        val layout = LinearLayout(context)
-        layout.orientation = LinearLayout.VERTICAL
-        layout.gravity = Gravity.CENTER_HORIZONTAL
-        layout.setBackgroundColor(color(R.color.white))
+        val contentView = LinearLayout(context)
+        contentView.orientation = LinearLayout.VERTICAL
+        contentView.gravity = Gravity.CENTER_HORIZONTAL
+        contentView.setBackgroundColor(color(R.color.white))
 
         val checkbox = Checkbox(context)
         checkbox.setText(R.string.dummy_check)
         checkbox.setTypeface(font(R.font.barlow_condensed_regular))
         checkbox.setTextSize(20f)
         checkbox.setButtonDrawable(R.drawable.ic_checkbox, dp(28), dp(28))
-        layout.addView(checkbox, LP.linear(LP.WRAP_CONTENT, LP.WRAP_CONTENT)
+        contentView.addView(checkbox, LP.linear(LP.WRAP_CONTENT, LP.WRAP_CONTENT)
                 .setMargins(0, dp(32), 0, dp(32))
                 .build())
 
@@ -45,14 +45,14 @@ class DummyPopup : BaseBottomPopup {
         close.setTypeface(font(R.font.barlow_condensed_bold))
         close.setTextSize(24f)
         close.setText(R.string.dummy_close)
-        layout.addView(close, LP.linear(LP.WRAP_CONTENT, LP.WRAP_CONTENT)
+        contentView.addView(close, LP.linear(LP.WRAP_CONTENT, LP.WRAP_CONTENT)
                 .setMargins(0, dp(96), 0, dp(96))
                 .build())
 
         // Register event listener
         checkbox.onCheckChanged = onCheckToggle
         close.setOnClickListener(onCloseClick)
-        return layout
+        return contentView
     }
     //---------------------------------------------------------------
     //endregion

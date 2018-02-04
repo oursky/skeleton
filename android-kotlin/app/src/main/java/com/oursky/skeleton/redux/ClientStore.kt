@@ -39,7 +39,8 @@ class ClientStore {
                 }
                 is Action.LoginComplete -> {
                     state.copy(
-                            login = APIState(inprogress = false, result = action.result, data = action.output)
+                            login = APIState(inprogress = false, result = action.result, data = action.output),
+                            me = action.output?.me
                     )
                 }
                 else -> state

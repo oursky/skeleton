@@ -20,11 +20,11 @@ abstract class BaseFrameLayout : FrameLayout {
 
     //region Attach / Detach
     //---------------------------------------------------------------
-    public override fun onAttachedToWindow() {
+    final override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         onAttach(this)
     }
-    public override fun onDetachedFromWindow() {
+    final override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
         onDetach(this)
     }

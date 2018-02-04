@@ -18,26 +18,28 @@ import com.oursky.skeleton.helper.Touchable
 class Button : FrameLayout {
     private val mText: TextView
     private var mIcon: ImageView? = null
-    private var mScaleType: ImageView.ScaleType? = null
+    private var mScaleType: ImageView.ScaleType
     private var mEnabled: Boolean = false
 
     //region Lifecycle
     //---------------------------------------------------------------
     constructor(context: Context) : super(context) {
         mText = TextView(context)
+        mScaleType = ImageView.ScaleType.FIT_CENTER
         initView(context, null, 0)
     }
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
         mText = TextView(context)
+        mScaleType = ImageView.ScaleType.FIT_CENTER
         initView(context, attrs, 0)
     }
     constructor(context: Context, attrs: AttributeSet, defStyle: Int) : super(context, attrs, defStyle) {
         mText = TextView(context)
+        mScaleType = ImageView.ScaleType.FIT_CENTER
         initView(context, attrs, defStyle)
     }
     private fun initView(context: Context, attrs: AttributeSet?, defStyle: Int) {
         mEnabled = true
-        mScaleType = ImageView.ScaleType.FIT_CENTER
         mText.setAllCaps(true)
         mText.background = null
         mText.gravity = Gravity.CENTER

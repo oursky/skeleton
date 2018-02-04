@@ -24,7 +24,7 @@ abstract class BaseController : Controller {
     //---------------------------------------------------------------
     constructor(): super()
     constructor(args: Bundle): super(args)
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
+    final override fun onCreateView(inflater: LayoutInflater, container: ViewGroup): View {
         val context = container.context
         val view = onCreateView(context)
         val blockable = BlockableFrame(context)
