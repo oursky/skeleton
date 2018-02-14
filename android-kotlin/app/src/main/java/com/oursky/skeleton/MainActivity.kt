@@ -58,9 +58,9 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         mSubscriptions.add(store().observe(store().client)
-                .distinctUntilChanged()
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(mapLoginState)
+                .distinctUntilChanged()
                 .subscribe(consumeLoginState)
         )
         if (mInSplash) {

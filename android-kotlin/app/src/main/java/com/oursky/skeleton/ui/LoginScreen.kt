@@ -68,9 +68,9 @@ class LoginScreen : BaseController() {
     override fun onAttach(view: View) {
         super.onAttach(view)
         mSubscriptions.add(store().observe(store().client)
-                .distinctUntilChanged()
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(mapLoginState)
+                .distinctUntilChanged()
                 .subscribe(consumeLoginState)
         )
     }

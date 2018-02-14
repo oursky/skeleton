@@ -71,9 +71,9 @@ public class MainScreen extends BaseController {
         super.onAttach(view);
         Observable<AppState> observable = AppStateObservable.create();
         mSubscriptions.add(observable
-                .distinctUntilChanged()
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(mapTitle)
+                .distinctUntilChanged()
                 .subscribe(consumeTitle)
         );
         mSubscriptions.add(observable

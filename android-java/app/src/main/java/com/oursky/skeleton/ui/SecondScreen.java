@@ -67,9 +67,9 @@ public class SecondScreen extends BaseController {
     protected void onAttach(@NonNull View view) {
         super.onAttach(view);
         mSubscriptions.add(AppStateObservable.create()
-                .distinctUntilChanged()
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(mapTitle)
+                .distinctUntilChanged()
                 .subscribe(consumeTitle)
         );
     }

@@ -62,9 +62,9 @@ class SecondScreen : BaseController() {
     override fun onAttach(view: View) {
         super.onAttach(view)
         mSubscriptions.add(store().observe(store().view)
-                .distinctUntilChanged()
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(mapTitle)
+                .distinctUntilChanged()
                 .subscribe(consumeTitle)
         )
     }
