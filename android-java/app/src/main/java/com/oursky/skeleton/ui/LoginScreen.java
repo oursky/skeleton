@@ -77,9 +77,9 @@ public class LoginScreen extends BaseController {
     protected void onAttach(@NonNull View view) {
         super.onAttach(view);
         mSubscriptions.add(AppStateObservable.create()
-                .distinctUntilChanged()
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(mapLoginState)
+                .distinctUntilChanged()
                 .subscribe(consumeLoginState)
         );
     }

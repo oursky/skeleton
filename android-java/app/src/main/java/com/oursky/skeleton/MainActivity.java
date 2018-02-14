@@ -69,9 +69,9 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         // subscribe to login state, we'll switch between LoginScreen and MainScreen
         mSubscriptions.add(AppStateObservable.create()
-                .distinctUntilChanged()
                 .observeOn(AndroidSchedulers.mainThread())
                 .map(mapLoginState)
+                .distinctUntilChanged()
                 .subscribe(consumeLoginState)
         );
         if (mInSplash) {
