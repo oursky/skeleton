@@ -81,3 +81,12 @@ captures/
 .externalNativeBuild
 # Google Services (e.g. APIs or Firebase)
 google-services.json
+
+*.pem
+*.cer
+*.cert
+*.p12
+*.pfx
+*.key
+.env
+docker-compose.override.yml
