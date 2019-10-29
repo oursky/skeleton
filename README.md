@@ -6,6 +6,12 @@
 [![Build Status](https://travis-ci.org/oursky/skeleton.svg?branch=master)](https://travis-ci.org/oursky/skeleton)
 [![ktlint](https://img.shields.io/badge/code%20style-%E2%9D%A4-FF4081.svg)](https://ktlint.github.io/)
 
+## Obsoleted
+The codebase is no longer maintained.
+
+New frameworks and even language constructs (e.g. kotlin DSL & co-rountine) are available and we suggest to adopt them instead.
+This repository will be archived for reference only.
+
 ### What's Included
 #### android-java:
 - [lint rules](android-java/app/lint.xml)
